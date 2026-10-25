@@ -1,251 +1,1037 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GBX Studio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=Press+Start+2P&family=Bricolage+Grotesque:wght@600;800&family=Fraunces:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b14">
+<title>GOOBIX | Official Website</title>
+
 <style>
-:root{--blue:#1f2bff;--ink:#0a0a23;--paper:#f5f5f7;--lilac:#c9c6ff}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{font-family:"DM Sans",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:1.05rem}
-body.locked{overflow:hidden}
-h1,h2,h3,.logo{font-family:Syne,"Arial Black",sans-serif;font-weight:800;line-height:1}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
 
-/* intro */
+:root {
+  --blue: #398cff;
+  --cyan: #56e0ff;
+  --bg: #080b14;
+  --panel: #101725;
+  --text: #f5f8ff;
+  --muted: #a1aec4;
+}
 
-/* page */
-header{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5vw;position:sticky;top:0;background:var(--paper);z-index:10;border-bottom:2px solid var(--ink)}
-.logo{font-size:1.4rem;text-decoration:none}
-nav{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:center;justify-content:flex-end}
-nav a{text-decoration:none;font-weight:500}
-nav a:hover{text-decoration:underline;text-decoration-thickness:2px}
-section{padding:6rem 5vw}
-.hero{background:var(--blue);color:var(--paper);min-height:80vh;display:flex;flex-direction:column;justify-content:center}
-.hero h1{font-size:clamp(3rem,11vw,9rem);letter-spacing:-.03em;max-width:12ch}
-.hero p{max-width:34rem;margin-top:1.8rem;font-size:1.2rem}
-h2{font-size:clamp(2rem,6vw,3.6rem);margin-bottom:2.5rem}
-.about{background:var(--lilac)}
-.about p{max-width:38rem;margin-bottom:1rem}
-.contact a{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(1.6rem,6vw,3.5rem);word-break:break-word}
-footer{padding:2rem 5vw;border-top:2px solid var(--ink)}
-/* find me + avatar */
-.find{background:#07071a;color:var(--paper);display:flex;flex-wrap:wrap;gap:3rem;align-items:center;justify-content:center;overflow:hidden}
-.links{flex:1 1 20rem;display:grid;gap:2.8rem;max-width:34rem}
-.links h2{margin-bottom:0}
-.glow{display:block;text-decoration:none;width:fit-content}
-.glow strong{display:block;font-family:Syne,"Arial Black",sans-serif;font-weight:800;font-size:clamp(3rem,13vw,6.5rem);line-height:1;transition:transform .2s}
-.glow span{display:block;margin-top:.5rem;opacity:.8}
-.glow:hover strong{transform:translateX(14px) rotate(-2deg)}
-.yt strong{color:#ff3b3b;animation:glowR 2.2s ease-in-out infinite alternate}
-.dc strong{color:#5b8cff;animation:glowB 2.2s .5s ease-in-out infinite alternate}
-.yt:hover strong{animation:flick .6s linear 1,glowR 2.2s .6s ease-in-out infinite alternate}
-.dc:hover strong{animation:flick .6s linear 1,glowB 2.2s .6s ease-in-out infinite alternate}
-@keyframes glowR{from{text-shadow:0 0 4px #ff3b3b,0 0 14px #ff1f1f,0 0 30px #c80000}to{text-shadow:0 0 8px #ff7a7a,0 0 30px #ff1f1f,0 0 70px #e60000}}
-@keyframes glowB{from{text-shadow:0 0 4px #5b8cff,0 0 14px #2f64ff,0 0 30px #1030c8}to{text-shadow:0 0 8px #9bb6ff,0 0 30px #2f64ff,0 0 70px #1a46ee}}
-@keyframes flick{0%,22%,44%{opacity:1}11%,33%,55%{opacity:.25}100%{opacity:1}}
-.hint{opacity:.6;font-size:.95rem}
-.world{position:relative;width:300px;height:540px;flex:0 0 300px}
-.ground,.block{background:linear-gradient(#5fae30 0 22px,#44861f 22px 28px,transparent 28px),repeating-conic-gradient(#7b5230 0 25%,#6d4727 0 50%) 0 0/16px 16px}
-.ground{position:absolute;left:-20px;right:-20px;bottom:0;height:40px}
-.block{position:absolute;left:32px;top:200px;width:96px;height:96px;border:3px solid #2e1c0c;box-sizing:border-box}
-.av{position:absolute;left:20px;top:8px;width:120px;height:192px;padding:0;border:0;background:none;cursor:pointer;transform-origin:50% 100%}
-.av svg{display:block;width:100%;height:100%;transform-origin:50% 100%}
-.fall .av{animation:drop 3.2s linear forwards}
-.fall .av svg{animation:breathe 1.8s 3.4s ease-in-out infinite}
-@keyframes drop{
-0%,18%{transform:translate(0,0) rotate(0) scale(1,1);animation-timing-function:ease-in-out}
-34%{transform:translate(96px,0) rotate(0) scale(1,1);animation-timing-function:linear}
-42%{transform:translate(112px,0) rotate(12deg) scale(1,1);animation-timing-function:ease-in}
-70%{transform:translate(140px,300px) rotate(372deg) scale(1,1);animation-timing-function:ease-out}
-74%{transform:translate(140px,300px) rotate(360deg) scale(1.2,.78)}
-82%{transform:translate(140px,270px) rotate(360deg) scale(.95,1.07)}
-90%{transform:translate(140px,300px) rotate(360deg) scale(1.05,.95)}
-100%{transform:translate(140px,300px) rotate(360deg) scale(1,1)}}
-@keyframes breathe{50%{transform:scaleY(1.025)}}
-.dust{position:absolute;left:170px;top:486px;width:100px;height:14px;pointer-events:none}
-.dust i{position:absolute;bottom:0;width:12px;height:12px;background:#d9d0c0;opacity:0}
-.dust i:nth-child(1){left:0;--dx:-34px;--dy:-14px}
-.dust i:nth-child(2){left:44px;--dx:0px;--dy:-30px}
-.dust i:nth-child(3){left:88px;--dx:34px;--dy:-14px}
-.fall .dust i{animation:puff .9s 2.24s ease-out forwards}
-@keyframes puff{0%{opacity:.9;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.8)}}
-/* about button, pointing character, discord image */
-.btn{display:inline-block;margin-top:1rem;font-family:Syne,"Arial Black",sans-serif;font-weight:800;font-size:1.3rem;text-decoration:none;background:var(--blue);color:var(--paper);padding:1rem 2rem;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);transition:transform .15s,box-shadow .15s}
-.btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink)}
-.btn:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
-#youtube{scroll-margin-top:6rem}
-#youtube:target strong{animation:flick .6s linear 1,glowR 2.2s .6s ease-in-out infinite alternate}
-.ytblock{display:grid;gap:.6rem}
-.walk{width:fit-content;animation:pace 5s ease-in-out infinite}
-.pt{display:block;width:80px;height:152px;overflow:visible}
-.pt g{transform-box:fill-box}
-.pt .arm{transform-origin:50% 6%}
-.pt .arm.l{animation:swing .8s ease-in-out infinite}
-.pt .arm.r{transform:rotate(195deg);animation:poke .7s ease-in-out infinite}
-.pt .leg{transform-origin:50% 0}
-.pt .leg.a{animation:step .8s ease-in-out infinite}
-.pt .leg.b{animation:step .8s -.4s ease-in-out infinite}
-.pt .bob{animation:bobstep .4s ease-in-out infinite}
-.pt .pupils{animation:look 4.5s infinite}
-.pt .lids{transform-origin:50% 0;transform:scaleY(0);animation:blink 4s infinite}
-@keyframes pace{0%,100%{transform:translateX(0)}50%{transform:translateX(80px)}}
-@keyframes swing{0%,100%{transform:rotate(14deg)}50%{transform:rotate(-14deg)}}
-@keyframes poke{0%,100%{transform:translateY(0) rotate(190deg)}50%{transform:translateY(-1.6px) rotate(203deg)}}
-@keyframes step{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
-@keyframes bobstep{50%{transform:translateY(-.5px)}}
-@keyframes look{0%,40%,75%,100%{transform:translateY(-1px)}50%,65%{transform:translateY(0)}}
-@keyframes blink{0%,90%,100%{transform:scaleY(0)}94%{transform:scaleY(1)}}
-.dcimg{display:block;width:110px;height:110px;margin-top:1rem;overflow:visible;transition:transform .2s;animation:dcglow 2.2s ease-in-out infinite alternate}
-.dc:hover .dcimg{transform:scale(1.12)}
-.dcbody{transform-box:fill-box;transform-origin:50% 100%;animation:dcfloat 3s ease-in-out infinite}
-.dcimg .eye,.dcimg .ring{transform-box:fill-box;transform-origin:50% 50%}
-.dcimg .eye{animation:dcblink 4s infinite}
-.dcimg .ring{animation:ring 2.2s ease-out infinite}
-@keyframes dcglow{from{filter:drop-shadow(0 0 6px #5865f2)}to{filter:drop-shadow(0 0 20px #5865f2)}}
-@keyframes dcfloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-8px) rotate(5deg)}}
-@keyframes dcblink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
-@keyframes ring{from{transform:scale(.8);opacity:.9}to{transform:scale(1.7);opacity:0}}
-/* theme variables */
-:root{--bg:#f5f5f7;--fg:#0a0a23;--accent:#1f2bff;--soft:#c9c6ff;--soft-fg:#0a0a23;--btn-fg:#f5f5f7}
-[data-theme=orange]{--bg:#120d08;--fg:#fff1e3;--accent:#ff7a1a;--soft:#2b1a0c;--soft-fg:#fff1e3;--btn-fg:#120d08}
-[data-theme=green]{--bg:#09120c;--fg:#e9fff0;--accent:#22c55e;--soft:#12261a;--soft-fg:#e9fff0;--btn-fg:#09120c}
-[data-theme=purple]{--bg:#0f0a18;--fg:#f3eaff;--accent:#9b5de5;--soft:#21152f;--soft-fg:#f3eaff;--btn-fg:#0f0a18}
-[hidden]{display:none!important}
-body{background:var(--bg);color:var(--fg)}
-header{background:var(--bg);border-bottom-color:var(--fg)}
-:focus-visible{outline-color:var(--accent)}
-.about{background:var(--soft);color:var(--soft-fg)}
-.btn{background:var(--accent);color:var(--btn-fg);border-color:var(--fg);box-shadow:6px 6px 0 var(--fg)}
-.btn:hover{box-shadow:3px 3px 0 var(--fg)}
-.btn:active{box-shadow:0 0 0 var(--fg)}
-footer{border-top-color:var(--fg)}
-.hero{position:relative;overflow:hidden;background:var(--accent)}
-#scene{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
-.hero h1,.hero p{position:relative;text-shadow:0 3px 0 rgba(0,0,0,.35)}
-/* settings panel + cookie banner */
-#gear{font:inherit;background:none;color:inherit;border:2px solid var(--fg);border-radius:99px;padding:.2rem .8rem;cursor:pointer}
-#panel{position:absolute;top:calc(100% + 10px);right:5vw;width:min(18rem,90vw);background:var(--bg);color:var(--fg);border:2px solid var(--fg);box-shadow:6px 6px 0 var(--fg);padding:1rem;display:grid;gap:.6rem;z-index:20}
-#panel button{font:inherit;text-align:left;background:none;color:inherit;border:2px solid var(--fg);padding:.5rem .8rem;cursor:pointer;display:flex;align-items:center;gap:.6rem}
-#panel button[aria-pressed=true]{background:var(--accent);color:var(--btn-fg)}
-#panel i{width:1.1rem;height:1.1rem;flex:none;border:1px solid #888;background:linear-gradient(135deg,var(--c) 50%,#0b0b0b 50%)}
-#cookie{position:fixed;left:1rem;right:1rem;bottom:1rem;max-width:36rem;margin:auto;z-index:50;background:#0b0b1a;color:#fff;border:2px solid #fff;box-shadow:6px 6px 0 var(--accent);padding:1rem 1.2rem;display:grid;gap:.8rem;animation:ckin .5s both}
-#cookie p{font-size:.95rem}
-#cookie div{display:flex;gap:.6rem;flex-wrap:wrap}
-#cookie button{font:inherit;font-weight:500;padding:.5rem 1.2rem;cursor:pointer;border:2px solid #fff;background:none;color:#fff}
-#cookie #ck-yes{background:var(--accent);color:var(--btn-fg);border-color:var(--accent)}
-@keyframes ckin{from{transform:translateY(130%)}to{transform:none}}
-/* intro */
-#intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;color:#fff;overflow:hidden}
-#cells{position:absolute;inset:0;display:grid}
-#cells i{transition:transform .45s cubic-bezier(.6,0,.4,1);box-shadow:0 0 0 1px currentColor}
-#intro.go #cells i{transform:scale(0)}
-.ic{position:relative;text-align:center;padding:1rem;width:min(92vw,28rem);transition:opacity .35s}
-#intro.go .ic{opacity:0}
-.gbx{display:flex;justify-content:center;font-size:clamp(5rem,26vw,11rem);letter-spacing:-.04em;line-height:.9}
-.gbx span{display:inline-block;text-shadow:0 .05em 0 #1f2bff;animation:letterIn .8s cubic-bezier(.3,1.6,.5,1) both}
-.gbx span:nth-child(2){color:#9db0ff;animation-delay:.25s}
-.gbx span:nth-child(3){animation-delay:.5s}
-@keyframes letterIn{from{transform:translateY(-110%) rotate(-14deg);opacity:0}to{transform:none;opacity:1}}
-.istudio{margin:.6rem 0 1.6rem;letter-spacing:.6em;font-family:"Press Start 2P",monospace;font-size:.7rem;opacity:.85}
-.ctl{display:grid;place-items:center;min-height:6.5rem}
-.ctl>*{grid-area:1/1}
-.ld{width:100%;animation:hideL .3s 2.9s forwards}
-.load{height:18px;border:3px solid #fff;background:#000;margin:0 auto;width:min(80%,18rem);padding:2px}
-.load i{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,#5fe05f 0 8px,#3fb83f 8px 10px);animation:fill 2s steps(14) .9s forwards}
-.ltxt{font-family:"Press Start 2P",monospace;font-size:.6rem;margin-top:.9rem;opacity:.75}
-@keyframes fill{to{width:100%}}
-@keyframes hideL{to{opacity:0;visibility:hidden}}
-#enter{font-family:"Press Start 2P",monospace;font-size:.85rem;color:#fff;background:#707070;border:4px solid #000;padding:1.1rem 1.5rem;cursor:pointer;box-shadow:inset -4px -4px 0 #3c3c3c,inset 4px 4px 0 #a8a8a8;text-shadow:3px 3px 0 #2a2a2a;animation:btnIn .5s 3s backwards,glowp 1.6s 3.5s ease-in-out infinite}
-#enter:hover,#enter:focus-visible{background:#6f7bd8;color:#ffffa0;box-shadow:inset -4px -4px 0 #3b44a0,inset 4px 4px 0 #a9b3ff}
-#enter:active{transform:translateY(3px)}
-@keyframes btnIn{from{visibility:hidden;opacity:0;transform:scale(.6)}to{visibility:visible;opacity:1;transform:none}}
-@keyframes glowp{50%{filter:drop-shadow(0 0 14px #9aa6ff)}}
-@media(prefers-reduced-motion:reduce){.ld{display:none}}
-/* about me + contact */
-.about h2{font-family:"Bricolage Grotesque",Syne,sans-serif;font-size:clamp(3.2rem,13vw,8rem);letter-spacing:-.04em;margin-bottom:1.5rem}
-.about p{font-family:Fraunces,Georgia,serif;font-size:clamp(1.15rem,3.6vw,1.45rem);line-height:1.5;max-width:36rem;margin-bottom:1.2rem}
-.about .lead{font-size:clamp(1.6rem,6vw,2.6rem);line-height:1.2;font-style:italic;max-width:40rem}
-.l{display:inline-block;opacity:0;transform:translateY(80%) rotate(8deg);transition:opacity .5s,transform .7s cubic-bezier(.3,1.5,.5,1);transition-delay:calc(var(--i)*60ms)}
-.in .l{opacity:1;transform:none}
-.in .l:hover{transform:translateY(-.12em) rotate(-6deg);transition-delay:0s;transition-duration:.2s}
-.w{display:inline-block;opacity:0;transform:translateY(.7em) rotate(3deg);filter:blur(5px);transition:opacity .5s,transform .6s cubic-bezier(.2,.8,.2,1),filter .5s;transition-delay:calc(var(--i)*45ms)}
-.in .w{opacity:1;transform:none;filter:none}
-mark{color:inherit;background:linear-gradient(var(--accent),var(--accent)) 0 92%/0 .4em no-repeat;transition:background-size .8s .7s}
-.in mark{background-size:100% .4em}
-.tl{display:flex;flex-wrap:wrap;gap:1.5rem;margin:2.2rem 0;padding:0;list-style:none;max-width:40rem}
-.tl li{flex:1 1 9rem;position:relative;padding-top:.9rem;border-top:3px solid rgba(128,128,128,.35)}
-.tl li::before{content:"";position:absolute;top:-3px;left:0;height:3px;width:0;background:var(--accent);transition:width .9s .3s}
-.tl li:nth-child(2)::before{transition-delay:.8s}
-.tl li:nth-child(3)::before{transition-delay:1.3s}
-.in .tl li::before,.tl.in li::before{width:100%}
-.tl b{display:block;font-family:"Bricolage Grotesque",Syne,sans-serif;font-size:1.6rem;line-height:1.1}
-.tl span{font-family:Fraunces,Georgia,serif}
-.contact .cnote{margin-bottom:1.2rem;max-width:30rem}
-.mail{background:linear-gradient(var(--accent),var(--accent)) 0 100%/0 .12em no-repeat;transition:background-size .3s}
-.mail:hover{background-size:100% .12em}
-.copy{display:block;margin-top:1.2rem;font:inherit;font-weight:500;color:inherit;background:none;border:2px solid var(--fg);border-radius:99px;padding:.5rem 1.3rem;cursor:pointer}
-.copy:hover{background:var(--accent);color:var(--btn-fg)}
-/* polish */
-#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--accent);z-index:30}
-.load i{animation:none}
-.ld{animation:none;transition:opacity .3s}
-.ltxt{display:flex;justify-content:space-between;gap:1rem;width:min(80%,18rem);margin:.9rem auto 0}
-#intro.ready .ld{opacity:0;visibility:hidden}
-#enter{position:relative;overflow:hidden;animation:none;visibility:hidden;opacity:0;transform:scale(.6);transition:opacity .4s,transform .5s cubic-bezier(.3,1.6,.5,1)}
-#intro.ready #enter{visibility:visible;opacity:1;transform:none;animation:glowp 1.6s .6s ease-in-out infinite}
-#intro.ready #enter:active{transform:translateY(3px)}
-#enter::after{content:"";position:absolute;top:0;bottom:0;width:30%;left:-40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);animation:shine 2.2s 1s infinite}
-@keyframes shine{to{left:130%}}
-.px{position:absolute;bottom:-12px;width:var(--s);height:var(--s);background:var(--c);opacity:.6;animation:pxrise var(--d) linear infinite;animation-delay:var(--dl)}
-@keyframes pxrise{to{transform:translateY(-110vh) rotate(90deg);opacity:0}}
-#intro.go .px{display:none}
-.hero{min-height:92vh}
-.cl{position:absolute;left:-160px;width:90px;height:22px;background:rgba(255,255,255,.3);box-shadow:20px -14px 0 rgba(255,255,255,.3),48px 0 0 rgba(255,255,255,.3);animation:drift linear infinite;pointer-events:none}
-@keyframes drift{to{transform:translateX(calc(100vw + 400px))}}
-.hero .cta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;position:relative}
-.hb{display:inline-block;font-family:Syne,"Arial Black",sans-serif;font-weight:800;padding:.8rem 1.6rem;background:#fff;color:#0a0a23;text-decoration:none;border:2px solid #0a0a23;box-shadow:5px 5px 0 #0a0a23;transition:transform .15s,box-shadow .15s}
-.hb.ghost{background:transparent;color:#fff;border-color:#fff;box-shadow:5px 5px 0 rgba(0,0,0,.4)}
-.hb:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 #0a0a23}
-.hb.ghost:hover{box-shadow:2px 2px 0 rgba(0,0,0,.4)}
-.cue{position:absolute;left:0;right:0;bottom:1.2rem;display:flex;justify-content:center;pointer-events:none}
-.cue i{display:block;width:16px;height:16px;border:solid #fff;border-width:0 5px 5px 0;transform:rotate(45deg);animation:cuebob 1.2s ease-in-out infinite}
-@keyframes cuebob{50%{transform:translateY(10px) rotate(45deg)}}
-.js .hw{display:inline-block;opacity:0;transform:translateY(.9em) rotate(4deg)}
-.js .hero p,.js .hero .cta{opacity:0;transform:translateY(24px)}
-.js .cue{opacity:0}
-.hero.go .hw{opacity:1;transform:none;transition:opacity .7s,transform .9s cubic-bezier(.2,1.3,.4,1);transition-delay:calc(var(--i)*.12s)}
-.hero.go p,.hero.go .cta{opacity:1;transform:none;transition:opacity .8s 1s,transform .8s 1s}
-.hero.go .cue{opacity:1;transition:opacity .8s 1.6s}
-.band{background:var(--fg);color:var(--bg);overflow:hidden;white-space:nowrap;padding:.8rem 0}
-.track{display:inline-flex;animation:marq 24s linear infinite}
-.track span{font-family:Syne,"Arial Black",sans-serif;font-weight:800;font-size:1.6rem;padding-left:1.4rem}
-.track span::after{content:"";display:inline-block;width:.6rem;height:.6rem;background:var(--accent);margin-left:2.8rem}
-@keyframes marq{to{transform:translateX(-50%)}}
-.band:hover .track{animation-play-state:paused}
-.js .rv{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
-.js .rv.in{opacity:1;transform:none}
-.copy{display:inline-block;margin-right:1rem}
-.contact a.alt{font:inherit;font-size:.95rem;font-weight:400;opacity:.7}
-footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center}
-.burst{position:fixed;width:8px;height:8px;margin:-4px;z-index:200;pointer-events:none}
-/* split social panels */
-.find{padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:0;justify-content:normal;align-items:stretch}
-.pan{position:relative;padding:5rem 5vw 6rem;overflow:hidden;display:grid;align-content:center;justify-items:start;gap:1.5rem;min-height:34rem}
-.pan>*{position:relative;z-index:1}
-.pan>.bgfx{position:absolute;inset:0;z-index:0;pointer-events:none}
-.pan>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.ypan{background:radial-gradient(circle at 20% 15%,rgba(255,0,0,.35),transparent 55%),linear-gradient(160deg,#2a0000,#0d0000)}
-.dpan{background:radial-gradient(circle at 80% 20%,rgba(88,101,242,.5),transparent 55%),linear-gradient(200deg,#1d2166,#0a0c2e)}
-.pan .glow strong{font-size:clamp(2.6rem,8vw,5.5rem)}
-.glow{position:relative}
-.ytico{display:block;width:64px;height:44px;margin-bottom:.6rem;filter:drop-shadow(0 0 14px #f00);animation:icop 1.6s ease-in-out infinite}
-@keyframes icop{50%{transform:scale(1.14)}}
-.glow strong::after{content:"";display:block;height:6px;margin-top:.5rem;animation:ubar 2.6s ease-in-out infinite}
-.yt strong::after{background:#ff3b3b;box-shadow:0 0 18px #ff1f1f}
-.dc strong
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--blue);
+  color: white;
+}
+
+/* Background effects */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 15% 15%, #15356a44, transparent 40%),
+    radial-gradient(ellipse at 85% 65%, #073b6040, transparent 40%);
+}
+
+#particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Navigation */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  padding: 20px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #080b14d9;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid #ffffff0d;
+}
+
+.logo {
+  font-family: Orbitron, sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: 3px;
+}
+
+.logo span {
+  color: var(--blue);
+}
+
+nav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+nav a {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  transition: .25s;
+}
+
+nav a:hover {
+  color: var(--cyan);
+}
+
+/* Floating social tabs */
+
+.social-tab {
+  position: fixed;
+  right: 0;
+  z-index: 30;
+  writing-mode: vertical-rl;
+  padding: 19px 12px;
+  border-radius: 12px 0 0 12px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  box-shadow: 0 0 25px #0008;
+  transition: .3s;
+}
+
+.social-tab:hover {
+  padding-right: 21px;
+}
+
+.youtube-tab {
+  top: 34%;
+  background: #f22d3d;
+  animation: tabPulse 3s infinite;
+}
+
+.discord-tab {
+  top: 54%;
+  background: #5865f2;
+  animation: tabPulse 3s 1s infinite;
+}
+
+@keyframes tabPulse {
+  0%, 100% { box-shadow: 0 0 12px #ffffff0a; }
+  50% { box-shadow: 0 0 25px #438cff66; }
+}
+
+/* Hero */
+
+.hero {
+  min-height: 100svh;
+  padding: 130px 7% 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1450px;
+  margin: auto;
+}
+
+.hero-copy {
+  flex: 1;
+  animation: slideIn .9s ease both;
+}
+
+.eyebrow {
+  color: var(--cyan);
+  font-size: 11px;
+  letter-spacing: 5px;
+  font-weight: 800;
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-family: Orbitron, sans-serif;
+  font-size: clamp(42px, 7vw, 88px);
+  line-height: 1.05;
+  letter-spacing: -3px;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #398cff, #65e3ff, #398cff);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientMove 5s linear infinite;
+}
+
+@keyframes gradientMove {
+  to { background-position: 200% center; }
+}
+
+.hero-copy p {
+  margin-top: 25px;
+  color: var(--muted);
+  line-height: 1.9;
+  max-width: 470px;
+  font-size: 15px;
+}
+
+.buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  padding: 15px 22px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  transition: .3s;
+}
+
+.btn-primary {
+  background: var(--blue);
+  box-shadow: 0 0 25px #398cff30;
+}
+
+.btn-secondary {
+  border: 1px solid #ffffff25;
+  background: #ffffff06;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 35px #398cff50;
+}
+
+.avatar-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  animation: slideIn .9s .2s ease both;
+}
+
+.avatar-frame {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.avatar-frame::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border: 1px solid #398cff55;
+  border-radius: 50%;
+  animation: rotateRing 18s linear infinite;
+}
+
+.avatar-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, #398cff20, transparent 65%);
+  z-index: -1;
+}
+
+.ring {
+  position: absolute;
+  width: 82%;
+  height: 82%;
+  border: 2px dashed #56e0ff50;
+  border-radius: 50%;
+  animation: rotateRing 24s linear infinite reverse;
+}
+
+.avatar {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 30px #398cff45);
+  animation: avatarFloat 4s ease-in-out infinite;
+}
+
+.avatar-frame:hover .avatar {
+  animation: avatarJump .65s ease;
+}
+
+@keyframes avatarFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-16px) rotate(2deg); }
+}
+
+@keyframes avatarJump {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  35% { transform: translateY(-24px) rotate(-5deg); }
+  70% { transform: translateY(-8px) rotate(4deg); }
+}
+
+@keyframes rotateRing {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sections */
+
+section.content {
+  padding: 100px 8%;
+  scroll-margin-top: 75px;
+}
+
+.section-label {
+  color: var(--cyan);
+  font-size: 11px;
+  letter-spacing: 4px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: Orbitron, sans-serif;
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.section-desc {
+  color: var(--muted);
+  line-height: 1.9;
+  max-width: 620px;
+  font-size: 14px;
+}
+
+/* Scroll reveal */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* YouTube feature */
+
+.youtube-section {
+  background:
+    radial-gradient(ellipse at 50% 100%, #1a142b, transparent 70%),
+    #0b0e18;
+  text-align: center;
+  border-top: 1px solid #ffffff0a;
+  border-bottom: 1px solid #ffffff0a;
+}
+
+.youtube-section .section-desc {
+  margin: auto;
+}
+
+.youtube-card {
+  max-width: 760px;
+  margin: 40px auto 0;
+  padding: 35px 20px;
+  border: 1px solid #ff454530;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ff33330c, #101725);
+  transition: .3s;
+}
+
+.youtube-card:hover {
+  transform: translateY(-6px);
+  border-color: #ff4545aa;
+  box-shadow: 0 15px 55px #ff252510;
+}
+
+.play-icon {
+  width: 78px;
+  height: 55px;
+  background: #ff303f;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  font-size: 25px;
+  margin: 0 auto 24px;
+  animation: playPulse 2s infinite;
+}
+
+@keyframes playPulse {
+  50% { transform: scale(1.08); box-shadow: 0 0 30px #ff303f66; }
+}
+
+/* Pointing avatar */
+
+.pointing-area {
+  margin: 65px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  max-width: 720px;
+  text-align: left;
+}
+
+.pointing-avatar {
+  width: 150px;
+  height: 170px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 18px #398cff40);
+  animation: pointBounce 2s ease-in-out infinite;
+}
+
+@keyframes pointBounce {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+.speech {
+  position: relative;
+  padding: 22px;
+  background: #121c2c;
+  border: 1px solid #398cff60;
+  border-radius: 14px;
+  max-width: 370px;
+  animation: speechPulse 3s ease-in-out infinite;
+}
+
+.speech strong {
+  color: var(--cyan);
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.speech p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+@keyframes speechPulse {
+  50% { box-shadow: 0 0 25px #398cff20; }
+}
+
+/* Discord */
+
+.discord-section {
+  background:
+    radial-gradient(ellipse at 80% 40%, #5865f222, transparent 50%),
+    #0a0d18;
+}
+
+.discord-card {
+  margin-top: 35px;
+  padding: clamp(25px, 5vw, 50px);
+  border-radius: 20px;
+  border: 1px solid #5865f277;
+  background: linear-gradient(120deg, #5865f220, #111827 65%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.discord-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.discord-icon {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 24px;
+  background: #5865f2;
+  font-size: 40px;
+  animation: discordBounce 3s ease-in-out infinite;
+}
+
+@keyframes discordBounce {
+  0%, 100% { transform: rotate(-5deg) translateY(0); }
+  50% { transform: rotate(5deg) translateY(-9px); }
+}
+
+.discord-card h3 {
+  font-family: Orbitron, sans-serif;
+  font-size: 25px;
+  margin-bottom: 12px;
+}
+
+.discord-card p {
+  color: #c0c8dc;
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 430px;
+}
+
+.discord-btn {
+  background: #5865f2;
+  white-space: nowrap;
+}
+
+/* About me */
+
+.about-section {
+  background:
+    radial-gradient(ellipse at 0 50%, #12376a36, transparent 55%),
+    linear-gradient(180deg, #0d1320, #080b14);
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 55px;
+  margin-top: 35px;
+}
+
+.about-text {
+  color: #b6c2d7;
+  font-size: 15px;
+  line-height: 2;
+}
+
+.about-text p + p {
+  margin-top: 18px;
+}
+
+.about-text strong {
+  color: white;
+}
+
+.about-panel {
+  position: relative;
+  padding: 32px;
+  border-radius: 16px;
+  background: #101b2b;
+  border: 1px solid #398cff40;
+  overflow: hidden;
+}
+
+.about-panel::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: -70px;
+  right: -70px;
+  background: #398cff40;
+  filter: blur(45px);
+}
+
+.stat {
+  padding: 18px 0;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.stat:last-child {
+  border-bottom: none;
+}
+
+.stat small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.stat strong {
+  font-family: Orbitron, sans-serif;
+  font-size: 19px;
+}
+
+/* Contact */
+
+.contact-section {
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 100%, #14346630, transparent 65%);
+}
+
+.contact-section .section-desc {
+  margin: 0 auto;
+}
+
+.email-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 32px;
+  padding: 20px 25px;
+  border-radius: 12px;
+  border: 1px solid #398cff55;
+  background: #101725;
+  transition: .3s;
+}
+
+.email-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 35px #398cff20;
+  border-color: var(--cyan);
+}
+
+.email-symbol {
+  font-size: 24px;
+  color: var(--cyan);
+}
+
+.email-text {
+  text-align: left;
+}
+
+.email-text small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-bottom: 5px;
+  letter-spacing: 2px;
+}
+
+.email-text strong {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+/* Footer */
+
+footer {
+  padding: 30px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  border-top: 1px solid #ffffff12;
+  color: #8491a8;
+  font-size: 11px;
+}
+
+footer .logo {
+  font-size: 17px;
+}
+
+/* Mobile */
+
+@media (max-width: 760px) {
+  header {
+    padding: 17px 5%;
+  }
+
+  .logo {
+    font-size: 19px;
+  }
+
+  nav {
+    gap: 12px;
+  }
+
+  nav a {
+    font-size: 10px;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 135px 7% 60px;
+    gap: 30px;
+  }
+
+  .hero-copy p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .avatar-area {
+    width: 100%;
+  }
+
+  .avatar-frame {
+    width: min(82vw, 340px);
+  }
+
+  section.content {
+    padding: 75px 7%;
+  }
+
+  .pointing-area {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .pointing-avatar {
+    width: 135px;
+    height: 145px;
+  }
+
+  .discord-left {
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .discord-icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 18px;
+    font-size: 30px;
+  }
+
+  .discord-card h3 {
+    font-size: 20px;
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .social-tab {
+    font-size: 10px;
+    padding: 15px 9px;
+  }
+
+  footer {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<header>
+  <a href="#home" class="logo">GOOBIX<span>.</span></a>
+
+  <nav>
+    <a href="#home">HOME</a>
+    <a href="#youtube">YOUTUBE</a>
+    <a href="#discord">DISCORD</a>
+    <a href="#about">ABOUT</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+</header>
+
+<!-- Floating social buttons -->
+<a class="social-tab youtube-tab"
+   href="https://www.youtube.com/@itsgoobix"
+   target="_blank" rel="noopener noreferrer"
+   aria-label="Visit Goobix on YouTube">
+  ▶ YOUTUBE
+</a>
+
+<a class="social-tab discord-tab"
+   href="https://discord.com/"
+   target="_blank" rel="noopener noreferrer"
+   aria-label="Join the Goobix Discord server">
+  ◈ DISCORD
+</a>
+
+<main>
+
+  <!-- HOME -->
+  <section class="hero" id="home">
+
+    <div class="hero-copy">
+      <div class="eyebrow">WELCOME TO MY WORLD</div>
+
+      <h1>
+        I'M<br>
+        <span class="gradient-text">GOOBIX.</span>
+      </h1>
+
+      <p>
+        Gaming, crazy moments and unforgettable adventures.
+        Welcome to my official website. Explore my content,
+        join the community and be part of the journey.
+      </p>
+
+      <div class="buttons">
+        <a class="btn btn-primary"
+           href="https://www.youtube.com/@itsgoobix"
+           target="_blank" rel="noopener noreferrer">
+          ▶ &nbsp; MY YOUTUBE
+        </a>
+
+        <a class="btn btn-secondary" href="#about">
+          DISCOVER MORE ↓
+        </a>
+      </div>
+    </div>
+
+    <div class="avatar-area">
+      <div class="avatar-frame">
+        <div class="ring"></div>
+        <img class="avatar"
+             src="avatar.png"
+             alt="Goobix avatar"
+             onerror="this.style.opacity='.12'; this.alt='Upload avatar.png to show your avatar';">
+      </div>
+    </div>
+
+  </section>
+
+  <!-- YOUTUBE -->
+  <section class="content youtube-section" id="youtube">
+
+    <div class="reveal">
+      <div class="section-label">MY CONTENT</div>
+      <h2 class="section-title">WATCH THE <span class="gradient-text">ACTION.</span></h2>
+      <p class="section-desc">
+        Gaming videos, challenges and funny moments.
+        Check out my YouTube channel and follow the journey.
+      </p>
+    </div>
+
+    <a class="youtube-card reveal"
+       href="https://www.youtube.com/@itsgoobix"
+       target="_blank" rel="noopener noreferrer">
+
+      <div class="play-icon">▶</div>
+      <h3 style="font-size:25px;margin-bottom:12px;">itsgoobix</h3>
+      <p style="color:var(--muted);font-size:13px;line-height:1.8;">
+        Click here to visit my YouTube channel.
+      </p>
+      <span class="btn btn-primary" style="margin-top:22px;">
+        VISIT CHANNEL ↗
+      </span>
+    </a>
+
+    <div class="pointing-area reveal">
+      <img class="pointing-avatar"
+           src="avatar.png"
+           alt="Goobix avatar inviting you to watch"
+           onerror="this.style.opacity='.12';">
+
+      <div class="speech">
+        <strong>HEY, YOU! 👀</strong>
+        <p>
+          Yeah, you! Want to see some gaming chaos?
+          Click the YouTube button and check out my videos.
+          I'll see you there!
+        </p>
+        <a href="https://www.youtube.com/@itsgoobix"
+           target="_blank" rel="noopener noreferrer"
+           style="display:inline-block;color:var(--cyan);font-size:12px;font-weight:800;margin-top:14px;">
+          LET'S GO WATCH ↗
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- DISCORD -->
+  <section class="content discord-section" id="discord">
+
+    <div class="reveal">
+      <div class="section-label">JOIN THE COMMUNITY</div>
+      <h2 class="section-title">YOUR NEXT STOP: <span style="color:#8290ff;">DISCORD.</span></h2>
+      <p class="section-desc">
+        Come hang out, meet other gamers and be part of
+        the Goobix community.
+      </p>
+    </div>
+
+    <div class="discord-card reveal">
+
+      <div class="discord-left">
+        <div class="discord-icon">♟</div>
+
+        <div>
+          <h3>GOOBIX DISCORD</h3>
+          <p>
+            Gaming community. Good vibes.
+            More adventures with the community.
+          </p>
+        </div>
+      </div>
+
+      <a class="btn discord-btn"
+         href="https://discord.com/"
+         target="_blank" rel="noopener noreferrer">
+        JOIN DISCORD ↗
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="content about-section" id="about">
+
+    <div class="reveal">
+      <div class="section-label">BEHIND THE SCREEN</div>
+      <h2 class="section-title">A LITTLE ABOUT <span class="gradient-text">ME.</span></h2>
+    </div>
+
+    <div class="about-layout">
+
+      <div class="about-text reveal">
+        <p>
+          Yo! Welcome to <strong>Goobix</strong>, my own corner
+          of the internet.
+        </p>
+
+        <p>
+          I'm a gamer and content creator who enjoys making
+          videos, exploring games and turning ordinary gaming
+          sessions into something worth watching.
+        </p>
+
+        <p>
+          From <strong>Minecraft adventures</strong> to
+          <strong>Roblox moments</strong>, there's always
+          something new to explore.
+        </p>
+
+        <p>
+          This website is where you can find my content,
+          connect with my community and follow what I'm doing.
+          The journey is only getting started.
+        </p>
+      </div>
+
+      <div class="about-panel reveal">
+
+        <div class="stat">
+          <small>USERNAME</small>
+          <strong>itsgoobix</strong>
+        </div>
+
+        <div class="stat">
+          <small>MAIN INTEREST</small>
+          <strong>GAMING</strong>
+        </div>
+
+        <div class="stat">
+          <small>CONTENT</small>
+          <strong>VIDEOS & FUN</strong>
+        </div>
+
+        <div class="stat">
+          <small>MISSION</small>
+          <strong>KEEP CREATING.</strong>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="content contact-section" id="contact">
+
+    <div class="reveal">
+      <div class="section-label">GET IN TOUCH</div>
+      <h2 class="section-title">LET'S <span class="gradient-text">CONNECT.</span></h2>
+
+      <p class="section-desc">
+        For questions, collaborations or other inquiries,
+        send me an email. I'll be happy to hear from you.
+      </p>
+
+      <a class="email-card"
+         href="https://mail.google.com/mail/?view=cm&fs=1&to=itsgoobix%40gmail.com"
+         target="_blank" rel="noopener noreferrer">
+
+        <span class="email-symbol">✉</span>
+
+        <span class="email-text">
+          <small>EMAIL ME</small>
+          <strong>itsgoobix@gmail.com</strong>
+        </span>
+
+        <span style="color:var(--cyan);">↗</span>
+      </a>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <a href="#home" class="logo">GOOBIX<span style="color:var(--blue);">.</span></a>
+  <span>© 2026 GOOBIX. MADE FOR GAMERS.</span>
+  <a href="#home" style="color:var(--cyan);">BACK TO TOP ↑</a>
+</footer>
+
+<script>
+// Reveal sections as you scroll
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
