@@ -26,83 +26,7 @@
       transition: background 0.4s ease;
     }
 
-    /* LOGIN SCREEN */
-    .login-screen {
-      position: fixed;
-      inset: 0;
-      background: #0a0a0a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      flex-direction: column;
-    }
-    .login-screen.hidden {
-      display: none !important;
-    }
-
-    .login-box {
-      background: #161616;
-      border: 1px solid rgba(255,107,0,0.35);
-      border-radius: 20px;
-      padding: 2.5rem;
-      width: 90%;
-      max-width: 380px;
-      text-align: center;
-      box-shadow: 0 0 50px rgba(255,107,0,0.15);
-    }
-
-    .login-box h2 {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 1.4rem;
-      color: var(--orange);
-      margin-bottom: 1.8rem;
-    }
-
-    .login-box input {
-      width: 100%;
-      padding: 0.95rem 1rem;
-      margin-bottom: 1rem;
-      border-radius: 12px;
-      border: 1px solid #333;
-      background: #0c0c0c;
-      color: white;
-      font-size: 1rem;
-      outline: none;
-    }
-    .login-box input:focus {
-      border-color: var(--orange);
-    }
-
-    .login-box button {
-      width: 100%;
-      padding: 1rem;
-      background: linear-gradient(135deg, var(--orange), #ff9500);
-      border: none;
-      border-radius: 12px;
-      color: black;
-      font-weight: 800;
-      font-size: 1.1rem;
-      cursor: pointer;
-      margin-top: 0.5rem;
-      transition: 0.2s;
-    }
-    .login-box button:hover {
-      transform: scale(1.03);
-    }
-
-    .switch-auth {
-      margin-top: 1.4rem;
-      font-size: 0.95rem;
-      color: var(--muted);
-      cursor: pointer;
-    }
-    .switch-auth span {
-      color: var(--orange);
-      text-decoration: underline;
-    }
-
-    /* SETTINGS */
+    /* SETTINGS BUTTON */
     .settings-btn {
       position: fixed;
       top: 20px;
@@ -119,12 +43,14 @@
       z-index: 1000;
       font-size: 1.4rem;
       transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
     }
     .settings-btn:hover {
       background: var(--orange);
       transform: rotate(90deg) scale(1.1);
     }
 
+    /* SETTINGS PANEL */
     .settings-panel {
       position: fixed;
       top: 80px;
@@ -138,7 +64,12 @@
       display: none;
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
-    .settings-panel.open { display: block; }
+    .settings-panel.open { display: block; animation: slideIn 0.3s ease; }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .settings-panel h3 {
       font-size: 1.1rem;
@@ -157,11 +88,23 @@
       border-radius: 8px;
       cursor: pointer;
       border: 2px solid transparent;
+      transition: all 0.2s;
     }
-    .bg-option.active, .bg-option:hover {
+    .bg-option:hover, .bg-option.active {
       border-color: white;
+      transform: scale(1.05);
     }
 
+    .settings-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .settings-section p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
     .clear-btn {
       width: 100%;
       padding: 0.7rem;
@@ -230,8 +173,6 @@
       font-weight: 800;
       color: #fff;
       margin-bottom: 0.8rem;
-      animation: fadeUp 1s ease forwards 0.3s;
-      opacity: 0;
     }
     .hero-sub {
       color: var(--muted);
@@ -239,16 +180,12 @@
       max-width: 520px;
       margin-bottom: 2.8rem;
       line-height: 1.7;
-      animation: fadeUp 1s ease forwards 0.6s;
-      opacity: 0;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .cta-btn {
       display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
       background: linear-gradient(135deg, var(--orange), #ff9500);
       color: #000;
       font-weight: 800;
@@ -258,8 +195,6 @@
       text-decoration: none;
       transition: all 0.3s ease;
       box-shadow: 0 0 35px rgba(255, 107, 0, 0.45);
-      animation: fadeUp 1s ease forwards 0.9s;
-      opacity: 0;
     }
     .cta-btn:hover {
       transform: translateY(-4px) scale(1.05);
@@ -286,6 +221,7 @@
       padding: 2.4rem;
       font-size: 1.08rem;
       line-height: 1.85;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     }
     .about-card strong { color: var(--orange); }
 
@@ -296,6 +232,9 @@
     }
     .upcoming-btn {
       display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: transparent;
       border: 2px solid var(--orange);
       color: var(--orange);
       font-weight: 700;
@@ -308,12 +247,22 @@
     .upcoming-btn:hover {
       background: var(--orange);
       color: #000;
+      box-shadow: 0 0 30px rgba(255, 107, 0, 0.5);
+      transform: translateY(-3px);
     }
 
     /* YOUTUBE */
     .youtube-section {
+      position: relative;
       padding: 5rem 1.5rem;
+      overflow: hidden;
       background: #1a0000;
+    }
+    .yt-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
       text-align: center;
     }
     .yt-icon {
@@ -325,8 +274,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.6));
     }
-    .yt-icon svg { width: 42px; fill: white; }
+    .yt-icon svg { width: 42px; height: 42px; fill: white; }
+
     .yt-title {
       font-size: 2.4rem;
       font-weight: 800;
@@ -340,8 +291,15 @@
     @keyframes glowText {
       to { background-position: 200% center; }
     }
+    .yt-sub {
+      color: #ffcccc;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
     .yt-btn {
       display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
       background: #ff0000;
       color: white;
       font-weight: 800;
@@ -349,7 +307,12 @@
       padding: 1.1rem 2.6rem;
       border-radius: 999px;
       text-decoration: none;
-      margin-top: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+    }
+    .yt-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 0 50px rgba(255, 0, 0, 0.75);
     }
 
     /* DISCORD */
@@ -367,16 +330,26 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      filter: drop-shadow(0 0 20px rgba(88, 101, 242, 0.6));
     }
-    .discord-icon svg { width: 42px; fill: white; }
+    .discord-icon svg { width: 42px; height: 42px; fill: white; }
+
     .discord-title {
       font-size: 2.4rem;
       font-weight: 800;
       color: #5865F2;
       margin-bottom: 0.6rem;
+      text-shadow: 0 0 25px rgba(88, 101, 242, 0.5);
+    }
+    .discord-sub {
+      color: #b0b8ff;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
     }
     .discord-btn {
       display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
       background: #5865F2;
       color: white;
       font-weight: 800;
@@ -384,13 +357,19 @@
       padding: 1.1rem 2.6rem;
       border-radius: 999px;
       text-decoration: none;
-      margin-top: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(88, 101, 242, 0.5);
+    }
+    .discord-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 0 50px rgba(88, 101, 242, 0.75);
     }
 
     /* CONTACT */
     .contact {
       text-align: center;
       padding: 5rem 1.5rem 3rem;
+      background: linear-gradient(180deg, transparent, rgba(255, 107, 0, 0.06));
     }
     .contact h2 {
       font-family: 'Press Start 2P', cursive;
@@ -398,8 +377,16 @@
       margin-bottom: 1rem;
       color: var(--orange);
     }
+    .contact p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
     .email-btn {
       display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: var(--card);
       border: 2px solid var(--orange);
       color: var(--orange);
       font-weight: 700;
@@ -407,10 +394,13 @@
       padding: 1rem 2.4rem;
       border-radius: 999px;
       text-decoration: none;
+      transition: all 0.3s ease;
     }
     .email-btn:hover {
       background: var(--orange);
       color: #000;
+      box-shadow: 0 0 40px rgba(255, 107, 0, 0.5);
+      transform: translateY(-3px);
     }
 
     footer {
@@ -418,196 +408,178 @@
       padding: 2rem;
       color: var(--muted);
       font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 107, 0, 0.15);
+    }
+
+    .welcome-toast {
+      position: fixed;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff6b00;
+      color: black;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .yt-title, .discord-title { font-size: 1.9rem; }
+      .settings-panel { width: 240px; right: 10px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- LOGIN SCREEN -->
-  <div class="login-screen" id="loginScreen">
-    <div class="login-box">
-      <h2 id="authTitle">Login</h2>
-      <input type="text" id="username" placeholder="Username">
-      <input type="password" id="password" placeholder="Password">
-      <button id="authBtn" onclick="handleAuth()">Continue</button>
-      <div class="switch-auth" onclick="toggleAuthMode()">
-        <span id="switchText">Don't have an account? Sign up</span>
-      </div>
-    </div>
-  </div>
+  <!-- SETTINGS BUTTON -->
+  <div class="settings-btn" onclick="toggleSettings()">⚙️</div>
 
-  <!-- SETTINGS -->
-  <div class="settings-btn" onclick="playClick(); toggleSettings()">⚙️</div>
+  <!-- SETTINGS PANEL -->
   <div class="settings-panel" id="settingsPanel">
     <h3>Settings</h3>
-    <p style="font-size:0.9rem;color:#aaa;margin-bottom:10px;">Background Color</p>
+    <p style="font-size:0.9rem; color:#aaa; margin-bottom:10px;">Background Color</p>
     <div class="bg-options">
-      <div class="bg-option active" style="background:#0c0c0c" onclick="playClick();changeBg('#0c0c0c',this)"></div>
-      <div class="bg-option" style="background:#1a0a00" onclick="playClick();changeBg('#1a0a00',this)"></div>
-      <div class="bg-option" style="background:#0a0a1a" onclick="playClick();changeBg('#0a0a1a',this)"></div>
-      <div class="bg-option" style="background:#001a0a" onclick="playClick();changeBg('#001a0a',this)"></div>
-      <div class="bg-option" style="background:#1a001a" onclick="playClick();changeBg('#1a001a',this)"></div>
-      <div class="bg-option" style="background:#000" onclick="playClick();changeBg('#000',this)"></div>
+      <div class="bg-option active" style="background:#0c0c0c;" onclick="changeBg('#0c0c0c', this)"></div>
+      <div class="bg-option" style="background:#1a0a00;" onclick="changeBg('#1a0a00', this)"></div>
+      <div class="bg-option" style="background:#0a0a1a;" onclick="changeBg('#0a0a1a', this)"></div>
+      <div class="bg-option" style="background:#001a0a;" onclick="changeBg('#001a0a', this)"></div>
+      <div class="bg-option" style="background:#1a001a;" onclick="changeBg('#1a001a', this)"></div>
+      <div class="bg-option" style="background:#000000;" onclick="changeBg('#000000', this)"></div>
     </div>
-    <button class="clear-btn" onclick="playClick();clearAll()">Clear Everything & Reset</button>
+
+    <div class="settings-section">
+      <p>Cookies & Data</p>
+      <button class="clear-btn" onclick="clearCookies()">Clear Cookies & Reset</button>
+    </div>
   </div>
 
   <!-- HERO -->
   <section class="hero">
     <div class="logo">GBX</div>
     <h1 class="hero-title">we make things worth reading</h1>
-    <p class="hero-sub">GBX Studio is a small creative studio.<br>Scroll down to learn about me and find my channels.</p>
-    <a href="#about" class="cta-btn" onclick="playClick()">What is this website about?</a>
+    <p class="hero-sub">
+      GBX Studio is a small creative studio.<br>
+      Scroll down to learn about me and find my channels.
+    </p>
+    <a href="#about" class="cta-btn">What is this website about?</a>
   </section>
 
   <!-- ABOUT -->
   <section class="about" id="about">
     <h2 class="section-title">About Me</h2>
     <div class="about-card">
-      In <strong>2022</strong> I started gaming and watched YouTube videos.<br><br>
-      I liked how the creators were adding as much creativity as they could and I thought to myself <em>“why don’t I start making content?”</em><br><br>
+      In <strong>2022</strong> I started gaming and watched YouTube videos.  
+      I liked how the creators were adding as much creativity as they could and I thought to myself  
+      <em>“why don’t I start making content?”</em><br><br>
       So I started learning how to edit. In a few years I learned pretty much everything about editing.<br><br>
-      In <strong>2025</strong> I started learning how to make sites and scripts.<br>
+      In <strong>2025</strong> I started learning how to make sites and scripts.  
       This site took me a year to accomplish — so please <strong>subscribe</strong>!
     </div>
   </section>
 
+  <!-- UPCOMING -->
   <div class="upcoming-wrap">
-    <a href="#youtube" class="upcoming-btn" onclick="playClick()">Upcoming Videos →</a>
+    <a href="#youtube" class="upcoming-btn">Upcoming Videos →</a>
   </div>
 
   <!-- YOUTUBE -->
   <section class="youtube-section" id="youtube">
-    <div class="yt-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    <h2 class="yt-title">YouTube</h2>
-    <p style="color:#ffcccc;margin-bottom:1rem;">Click to visit my channel</p>
-    <a href="https://www.youtube.com/@ItsGoobix" target="_blank" class="yt-btn" onclick="playClick()">Go to Channel</a>
+    <div class="yt-content">
+      <div class="yt-icon">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <h2 class="yt-title">YouTube</h2>
+      <p class="yt-sub">Click to visit my channel</p>
+      <a href="https://www.youtube.com/@ItsGoobix" target="_blank" class="yt-btn">Go to Channel</a>
+    </div>
   </section>
 
   <!-- DISCORD -->
   <section class="discord-section">
-    <div class="discord-icon"><svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></div>
+    <div class="discord-icon">
+      <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+    </div>
     <h2 class="discord-title">Discord</h2>
-    <p style="color:#b0b8ff;margin-bottom:1rem;">Join the community</p>
-    <a href="https://discord.gg/Ftvm3hVGb7" target="_blank" class="discord-btn" onclick="playClick()">Join Server</a>
+    <p class="discord-sub">Join the community</p>
+    <a href="https://discord.gg/Ftvm3hVGb7" target="_blank" class="discord-btn">Join Server</a>
   </section>
 
   <!-- CONTACT -->
   <section class="contact">
     <h2>Contact Me</h2>
-    <p style="color:var(--muted);margin-bottom:1.5rem;">If you need any help, just reach out!</p>
-    <a href="mailto:itsgoobix@gmail.com" class="email-btn" onclick="playClick()">itsgoobix@gmail.com</a>
+    <p>If you need any help, just reach out!</p>
+    <a href="mailto:itsgoobix@gmail.com" class="email-btn">itsgoobix@gmail.com</a>
   </section>
 
   <footer>GBX Studio • 2026</footer>
 
   <script>
-    // Click sound
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    function playClick() {
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.frequency.value = 800;
-      osc.type = 'square';
-      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.08);
-    }
-
-    // ===== LOGIN SYSTEM (FIXED) =====
-    let isSignup = false;
-
-    function toggleAuthMode() {
-      playClick();
-      isSignup = !isSignup;
-
-      if (isSignup) {
-        document.getElementById('authTitle').textContent = 'Sign Up';
-        document.getElementById('switchText').textContent = 'Already have an account? Login';
-        document.getElementById('authBtn').textContent = 'Create Account';
-      } else {
-        document.getElementById('authTitle').textContent = 'Login';
-        document.getElementById('switchText').textContent = "Don't have an account? Sign up";
-        document.getElementById('authBtn').textContent = 'Continue';
-      }
-    }
-
-    function handleAuth() {
-      playClick();
-      const user = document.getElementById('username').value.trim();
-      const pass = document.getElementById('password').value.trim();
-
-      if (!user || !pass) {
-        alert('Please enter both username and password');
-        return;
-      }
-
-      if (isSignup) {
-        // Create account
-        localStorage.setItem('gbx_user', user);
-        localStorage.setItem('gbx_pass', pass);
-        alert('Account created successfully!\nYou can now login.');
-        
-        // Switch back to login mode
-        isSignup = false;
-        document.getElementById('authTitle').textContent = 'Login';
-        document.getElementById('switchText').textContent = "Don't have an account? Sign up";
-        document.getElementById('authBtn').textContent = 'Continue';
-        document.getElementById('password').value = '';
-      } else {
-        // Login
-        const savedUser = localStorage.getItem('gbx_user');
-        const savedPass = localStorage.getItem('gbx_pass');
-
-        if (user === savedUser && pass === savedPass) {
-          localStorage.setItem('gbx_loggedin', 'true');
-          document.getElementById('loginScreen').classList.add('hidden');
-        } else {
-          alert('Wrong username or password');
-        }
-      }
-    }
-
-    // Auto hide login if already logged in
-    if (localStorage.getItem('gbx_loggedin') === 'true') {
-      document.getElementById('loginScreen').classList.add('hidden');
-    }
-
-    // Settings
     function toggleSettings() {
       document.getElementById('settingsPanel').classList.toggle('open');
     }
 
-    function changeBg(color, el) {
+    function changeBg(color, element) {
       document.body.style.background = color;
       document.documentElement.style.setProperty('--bg', color);
       localStorage.setItem('bgColor', color);
-      document.querySelectorAll('.bg-option').forEach(e => e.classList.remove('active'));
-      el.classList.add('active');
+      document.querySelectorAll('.bg-option').forEach(el => el.classList.remove('active'));
+      element.classList.add('active');
     }
 
+    // Load saved background
     const savedBg = localStorage.getItem('bgColor');
     if (savedBg) {
       document.body.style.background = savedBg;
       document.documentElement.style.setProperty('--bg', savedBg);
     }
 
-    function clearAll() {
-      localStorage.clear();
+    function setCookie(name, value, days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+    }
+
+    function getCookie(name) {
+      const cookies = document.cookie.split(';');
+      for (let cookie of cookies) {
+        const [key, val] = cookie.trim().split('=');
+        if (key === name) return val;
+      }
+      return null;
+    }
+
+    function clearCookies() {
+      document.cookie = "visited=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      localStorage.removeItem('bgColor');
       location.reload();
+    }
+
+    // Welcome message
+    if (!getCookie("visited")) {
+      const toast = document.createElement("div");
+      toast.className = "welcome-toast";
+      toast.textContent = "Welcome to GBX Studio!";
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+      setCookie("visited", "true", 30);
     }
 
     // Close settings when clicking outside
     document.addEventListener('click', function(e) {
       const panel = document.getElementById('settingsPanel');
       const btn = document.querySelector('.settings-btn');
-      if (panel && !panel.contains(e.target) && !btn.contains(e.target)) {
+      if (!panel.contains(e.target) && !btn.contains(e.target)) {
         panel.classList.remove('open');
       }
     });
   </script>
 </body>
-    </html>
+</html>
