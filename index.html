@@ -1,374 +1,482 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Goobix | Gaming & Editing</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GBX | ItsGoobix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --card: #12121a;
+      --red: #ff2a2a;
+      --blue: #5865F2;
+      --accent: #00f0ff;
+      --text: #f0f0f5;
+      --muted: #a0a0b0;
+    }
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
- background:#101010;color:#ededed;
- font-family:Arial,Helvetica,sans-serif;
- line-height:1.8;overflow-x:hidden
-}
-a{color:inherit;text-decoration:none}
-header{
- height:76px;padding:0 7%;
- display:flex;align-items:center;justify-content:space-between;
- background:#151515;border-bottom:1px solid #292929
-}
-.logo{font-size:25px;font-weight:900;letter-spacing:2px}
-.logo span{color:#aaa}
-nav{display:flex;gap:25px}
-nav a{font-size:13px;color:#c5c5c5}
-nav a:hover{color:white}
-.social{
- position:fixed;right:0;z-index:20;
- writing-mode:vertical-rl;
- padding:18px 12px;border-radius:9px 0 0 9px;
- font-size:13px;font-weight:bold;letter-spacing:2px;
- transition:.25s
-}
-.social:hover{padding-right:20px}
-.youtube-side{top:35%;background:#f00000;color:white}
-.discord-side{top:54%;background:#5865f2;color:white}
-section{padding:90px 9%;scroll-margin-top:25px}
-.hero{
- min-height:620px;display:flex;align-items:center;
- justify-content:space-between;gap:45px;
- background:
- radial-gradient(ellipse at 75% 45%,#252525 0%,transparent 50%),
- #101010
-}
-.hero-text{max-width:650px}
-.label{
- font-size:12px;text-transform:uppercase;
- letter-spacing:3px;color:#a7a7a7;margin-bottom:18px
-}
-h1{font-size:clamp(45px,7vw,78px);line-height:1.12}
-h1 span{color:#aaa}
-.hero p{color:#bdbdbd;margin-top:25px;max-width:570px}
-.avatar-box{
- flex:0 0 300px;height:340px;
- display:flex;align-items:center;justify-content:center;
- position:relative
-}
-.avatar-box:before{
- content:"";position:absolute;width:265px;height:265px;
- border:1px solid #444;border-radius:50%;
- animation:spin 18s linear infinite
-}
-.avatar-box:after{
- content:"";position:absolute;width:220px;height:220px;
- border:1px dashed #666;border-radius:50%;
- animation:spin 25s linear infinite reverse
-}
-.avatar{
- position:relative;z-index:2;width:100%;height:100%;
- object-fit:contain;
- filter:drop-shadow(0 8px 18px #000);
- animation:float 3.5s ease-in-out infinite
-}
-@keyframes float{
- 0%,100%{transform:translateY(0) rotate(-2deg)}
- 50%{transform:translateY(-13px) rotate(2deg)}
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-.buttons{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
-.button{
- display:inline-block;padding:13px 22px;
- border:1px solid #444;border-radius:5px;
- font-size:13px;font-weight:bold;transition:.25s
-}
-.button:hover{transform:translateY(-3px)}
-.subscribe{
- background:#f00000;border-color:#f00000;
- color:white;box-shadow:0 0 12px #f0000080;
- animation:redGlow 2s ease-in-out infinite
-}
-@keyframes redGlow{
- 0%,100%{box-shadow:0 0 9px #f0000060}
- 50%{box-shadow:0 0 24px #ff0000}
-}
-.divider{height:1px;background:#303030}
-.section-label{color:#999;font-size:12px;letter-spacing:3px;margin-bottom:12px}
-h2{font-size:clamp(30px,4vw,44px);line-height:1.3;margin-bottom:22px}
-p{margin-bottom:16px}
-.muted{color:#b6b6b6}
-.about{background:#191919}
-.about-content{max-width:850px}
-.about-content p{font-size:16px;color:#c8c8c8}
-.about-content strong{color:white}
-.about-content .story-end{color:#fff;font-size:18px;margin-top:25px}
-.youtube-section{background:#111}
-.youtube-section h2 span{color:#ff2929}
-.youtube-copy{max-width:760px;color:#c0c0c0}
-.discord-section{background:#151720}
-.discord-section h2 span{color:#8290ff}
-.discord-box{
- margin-top:25px;padding:28px;
- border:1px solid #5865f2;
- background:#20243a;border-radius:8px;
- display:flex;align-items:center;justify-content:space-between;
- gap:22px;flex-wrap:wrap
-}
-.discord-info{display:flex;align-items:center;gap:20px}
-.discord-icon{
- width:66px;height:66px;flex-shrink:0;
- border-radius:15px;background:#5865f2;
- display:grid;place-items:center;font-size:31px;
- animation:discordMove 2.5s ease-in-out infinite
-}
-@keyframes discordMove{
- 0%,100%{transform:rotate(-5deg) translateY(0)}
- 50%{transform:rotate(5deg) translateY(-7px)}
-}
-.discord-box h3{font-size:21px;margin-bottom:5px}
-.discord-box p{font-size:14px;color:#c1c5d8;margin:0}
-.discord-button{background:#5865f2;border-color:#5865f2}
-.contact{background:#101010}
-.contact-inner{max-width:760px}
-.email{
- display:inline-block;margin-top:15px;
- padding:16px 22px;border:1px solid #555;
- border-radius:5px;background:#191919;
- overflow-wrap:anywhere;transition:.25s
-}
-.email:hover{border-color:white;background:#222}
-footer{
- padding:25px 7%;background:#151515;
- display:flex;justify-content:space-between;gap:15px;
- flex-wrap:wrap;color:#999;font-size:12px
-}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
-.reveal.show{opacity:1;transform:translateY(0)}
-@media(max-width:760px){
- header{padding:0 5%;height:auto;min-height:75px;gap:12px;flex-wrap:wrap;padding-top:15px;padding-bottom:15px}
- nav{gap:13px;flex-wrap:wrap}
- nav a{font-size:11px}
- .hero{min-height:0;padding:85px 7% 60px;flex-direction:column;text-align:center;gap:15px}
- .hero-text{order:1}
- .avatar-box{order:0;flex:0 0 245px;width:245px;height:245px}
- .avatar-box:before{width:205px;height:205px}
- .avatar-box:after{width:175px;height:175px}
- .buttons{justify-content:center}
- section{padding:65px 7%}
- .discord-info{align-items:flex-start}
- .social{padding:15px 9px;font-size:11px}
-}
-@media(prefers-reduced-motion:reduce){
- *,*:before,*:after{animation:none!important;transition:none!important}
- .reveal{opacity:1;transform:none}
-}
-</style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: 
+        radial-gradient(ellipse at 20% 50%, rgba(88, 101, 242, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 42, 42, 0.12) 0%, transparent 50%),
+        linear-gradient(180deg, #0a0a0f 0%, #111118 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gridMove 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(40px); }
+    }
+
+    .avatar-float {
+      width: 160px;
+      height: 160px;
+      margin-bottom: 2rem;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.4));
+    }
+
+    .avatar-float img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      image-rendering: pixelated;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+
+    /* ===== STYLED GBX LOGO ===== */
+    .logo {
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(3.5rem, 12vw, 6.5rem);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(90deg, #ffffff 0%, #00f0ff 50%, #ffffff 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 4s linear infinite;
+      text-shadow: 0 0 40px rgba(0, 240, 255, 0.35);
+      position: relative;
+    }
+
+    .logo::after {
+      content: 'GBX';
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      background: none;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 
+        0 0 20px rgba(0, 240, 255, 0.6),
+        0 0 40px rgba(0, 240, 255, 0.4);
+    }
+
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin-bottom: 2.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, var(--accent), #00a8ff);
+      color: #000;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 1rem 2.2rem;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 0 50px rgba(0, 240, 255, 0.7);
+    }
+
+    /* ===== POINTER CHARACTER ===== */
+    .pointer-guide {
+      position: absolute;
+      bottom: 40px;
+      right: 8%;
+      width: 110px;
+      animation: pointBounce 2s ease-in-out infinite;
+      z-index: 5;
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.3));
+    }
+
+    .pointer-guide img {
+      width: 100%;
+      image-rendering: pixelated;
+      transform: scaleX(-1);
+    }
+
+    .pointer-guide .arrow {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.8rem;
+      animation: arrowPulse 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pointBounce {
+      0%, 100% { transform: translateY(0) rotate(-8deg); }
+      50% { transform: translateY(-12px) rotate(5deg); }
+    }
+
+    @keyframes arrowPulse {
+      0%, 100% { opacity: 0.6; transform: translateX(-50%) translateY(0); }
+      50% { opacity: 1; transform: translateX(-50%) translateY(-6px); }
+    }
+
+    /* ===== ABOUT ===== */
+    .about {
+      padding: 6rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--accent);
+    }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 2.5rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .about-card strong {
+      color: var(--accent);
+    }
+
+    /* ===== SOCIAL CARDS ===== */
+    .socials {
+      padding: 4rem 1.5rem 6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .social-card {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2.5rem 3rem;
+      border-radius: 24px;
+      text-decoration: none;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .social-card:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    .social-card.youtube {
+      background: linear-gradient(135deg, #ff2a2a, #cc0000);
+    }
+
+    .social-card.discord {
+      background: linear-gradient(135deg, #5865F2, #404eed);
+    }
+
+    .social-card .icon {
+      font-size: 3.5rem;
+      flex-shrink: 0;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }
+
+    .social-card .info h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+    }
+
+    .social-card .info p {
+      opacity: 0.9;
+      font-size: 1.05rem;
+    }
+
+    .social-card .arrow {
+      margin-left: auto;
+      font-size: 2rem;
+      opacity: 0.7;
+      transition: transform 0.3s;
+    }
+
+    .social-card:hover .arrow {
+      transform: translateX(8px);
+      opacity: 1;
+    }
+
+    .social-card::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -50px;
+      right: -50px;
+      pointer-events: none;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact {
+      text-align: center;
+      padding: 5rem 1.5rem 3rem;
+      background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.05));
+    }
+
+    .contact h2 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .contact p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-size: 1.15rem;
+    }
+
+    .email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: var(--card);
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.15rem;
+      padding: 1rem 2.4rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .email-btn:hover {
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 0 40px rgba(0, 240, 255, 0.5);
+      transform: translateY(-3px);
+    }
+
+    /* ===== FALLING AVATAR ===== */
+    .falling-section {
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+
+    .falling-avatar {
+      position: absolute;
+      left: 50%;
+      top: -120px;
+      width: 90px;
+      transform: translateX(-50%);
+      animation: fall 4.5s ease-in forwards;
+      animation-delay: 0.5s;
+      opacity: 0;
+    }
+
+    .falling-avatar img {
+      width: 100%;
+      image-rendering: pixelated;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -120px;
+        opacity: 1;
+        transform: translateX(-50%) rotate(0deg);
+      }
+      70% {
+        opacity: 1;
+      }
+      100% {
+        top: 220px;
+        opacity: 0;
+        transform: translateX(-50%) rotate(720deg);
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    @media (max-width: 600px) {
+      .social-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        gap: 1.2rem;
+      }
+      .social-card .arrow {
+        margin-left: 0;
+      }
+      .pointer-guide {
+        display: none;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
- <a class="logo" href="#home">GOOBIX<span>.</span></a>
- <nav>
-  <a href="#home">Home</a>
-  <a href="#about">About me</a>
-  <a href="#contact">Contact</a>
- </nav>
-</header>
-
-<!-- One YouTube tab -->
-<a class="social youtube-side"
- href="https://www.youtube.com/@itsgoobix"
- target="_blank" rel="noopener noreferrer">▶ YOUTUBE</a>
-
-<!-- One Discord tab -->
-<a class="social discord-side"
- href="https://discord.gg/Ftvm3hVGb7"
- target="_blank" rel="noopener noreferrer">◈ DISCORD</a>
-
-<main>
-
-<section class="hero" id="home">
- <div class="hero-text">
-  <div class="label">Gaming · Editing · Scripting</div>
-  <h1>HEY, I'M<br><span>GOOBIX.</span></h1>
-  <p>
-   Welcome to my website. This is where I share my gaming
-   content, my editing journey and the things I've been
-   working on. Take a look around and check out my videos below.
-  </p>
-  <div class="buttons">
-   <a class="button subscribe"
-    href="https://www.youtube.com/@itsgoobix"
-    target="_blank" rel="noopener noreferrer">
-    ▶ SUBSCRIBE
-   </a>
-   <a class="button" href="#about">READ MY STORY ↓</a>
-  </div>
- </div>
-
- <div class="avatar-box">
-  <img class="avatar" src="avatar.png" alt="Goobix Minecraft avatar">
- </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- About me: your actual story -->
-<section class="about" id="about">
- <div class="about-content reveal">
-  <div class="section-label">A LITTLE ABOUT ME</div>
-  <h2>HOW IT ALL <span style="color:#aaa">STARTED.</span></h2>
-
-  <p>
-   In <strong>2023</strong>, I started gaming and watching
-   YouTube videos. I enjoyed watching creators and their content,
-   but there was something I kept wondering about.
-  </p>
-
-  <p>
-   How did they make those videos? How did they edit everything
-   together and make their content look so good? I wanted to
-   understand how it all worked instead of just watching.
-  </p>
-
-  <p>
-   That's when I started learning <strong>video editing</strong>.
-   At first, I was learning how things worked, trying different
-   techniques and getting better over time. I kept learning and
-   exploring new ways to create my own content.
-  </p>
-
-  <p>
-   A few years later, I also started learning
-   <strong>scripting for websites</strong>. I wanted to understand
-   how websites work, how to build them and how to make my own
-   ideas come to life. This website is part of that journey.
-  </p>
-
-  <p>
-   I've put a lot of time into working on this site, and I'm
-   still learning and improving. There is always something new
-   to try, whether it's editing, gaming or creating websites.
-  </p>
-
-  <p class="story-end">
-   I hope you like my videos. They're down below, so check them
-   out and please subscribe. Thanks for being here!
-  </p>
- </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- YouTube section -->
-<section class="youtube-section" id="videos">
- <div class="reveal">
-  <div class="section-label">MY CONTENT</div>
-  <h2>MY <span>VIDEOS.</span></h2>
-
-  <div class="youtube-copy">
-   <p>
-    This is where my gaming content lives. I make videos about
-    the games I play and the challenges I want to try.
-    I'm always looking for new ideas and ways to improve my videos.
-   </p>
-   <p>
-    If you enjoy Minecraft, Roblox or gaming content in general,
-    feel free to visit my channel. Every view and subscriber
-    helps me keep learning and creating.
-   </p>
-  </div>
-
-  <div class="buttons">
-   <a class="button subscribe"
-    href="https://www.youtube.com/@itsgoobix"
-    target="_blank" rel="noopener noreferrer">
-    ▶ SUBSCRIBE TO MY CHANNEL
-   </a>
-  </div>
- </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- Discord section -->
-<section class="discord-section" id="discord">
- <div class="reveal">
-  <div class="section-label">COME JOIN US</div>
-  <h2>MY <span>DISCORD.</span></h2>
-
-  <p class="muted">
-   Want to join the community? You can find my Discord server
-   using the button below. Click it to open the invite and
-   join the server.
-  </p>
-
-  <div class="discord-box">
-   <div class="discord-info">
-    <div class="discord-icon" aria-label="Discord icon">♟</div>
-    <div>
-     <h3>GOOBIX COMMUNITY</h3>
-     <p>Join the server and be part of the community.</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="avatar-float">
+      <img src="goobix.png" alt="Goobix Minecraft Avatar" />
     </div>
-   </div>
 
-   <a class="button discord-button"
-    href="https://discord.gg/Ftvm3hVGb7"
-    target="_blank" rel="noopener noreferrer">
-    JOIN DISCORD ↗
-   </a>
+    <div class="logo">GBX</div>
+    <p class="tagline">ItsGoobix • Gamer & Creator</p>
+
+    <a href="#about" class="cta-btn">
+      What is this website about?
+    </a>
+
+    <div class="pointer-guide">
+      <div class="arrow">👇</div>
+      <img src="goobix.png" alt="pointing" />
+    </div>
+  </section>
+
+  <!-- ABOUT ME -->
+  <section class="about" id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-card">
+      In <strong>2022</strong> I started gaming and watched YouTube videos.  
+      I liked how the creators were adding as much creativity as they could and I thought to myself  
+      <em>“why don’t I start making content?”</em>  
+
+      So I started learning how to edit. First in a few years I learned pretty much everything about editing.  
+
+      In <strong>2025</strong> I started learning how to make sites and scripts and stuff.  
+      This site took me a year to accomplish — so please <strong>subscribe</strong>!
+    </div>
+  </section>
+
+  <!-- SOCIAL LINKS -->
+  <section class="socials">
+    <a href="https://www.youtube.com/@ItsGoobix" target="_blank" class="social-card youtube">
+      <div class="icon">▶️</div>
+      <div class="info">
+        <h3>YouTube</h3>
+        <p>Subscribe for gaming videos & more</p>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a href="https://discord.gg/Ftvm3hVGb7" target="_blank" class="social-card discord">
+      <div class="icon">💬</div>
+      <div class="info">
+        <h3>Discord</h3>
+        <p>Join the community & chat with me</p>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <h2>Contact Me</h2>
+    <p>If you need any help, just reach out!</p>
+    <a href="mailto:itsgoobix@gmail.com" class="email-btn">
+      ✉️ itsgoobix@gmail.com
+    </a>
+  </section>
+
+  <!-- FALLING AVATAR -->
+  <div class="falling-section">
+    <div class="falling-avatar">
+      <img src="goobix.png" alt="falling goobix" />
+    </div>
   </div>
- </div>
-</section>
 
-<div class="divider"></div>
-
-<!-- Contact section -->
-<section class="contact" id="contact">
- <div class="contact-inner reveal">
-  <div class="section-label">GET IN TOUCH</div>
-  <h2>CONTACT <span style="color:#aaa">ME.</span></h2>
-
-  <p class="muted">
-   Have a question or want to contact me about something?
-   You can send me an email using the address below.
-   Clicking it will open a new email addressed to me.
-  </p>
-
-  <a class="email"
-   href="mailto:itsgoobix@gmail.com">
-   ✉ &nbsp; itsgoobix@gmail.com
-  </a>
- </div>
-</section>
-
-</main>
-
-<footer>
- <a class="logo" href="#home">GOOBIX.</a>
- <span>Gaming, editing and learning something new.</span>
- <a href="#home">Back to top ↑</a>
-</footer>
-
-<script>
-const elements = document.querySelectorAll(".reveal");
-
-if ("IntersectionObserver" in window) {
- const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-   if (entry.isIntersecting) {
-    entry.target.classList.add("show");
-    observer.unobserve(entry.target);
-   }
-  });
- }, {threshold: 0.08});
-
- elements.forEach(element => observer.observe(element));
-} else {
- elements.forEach(element => element.classList.add("show"));
-}
-</script>
+  <footer>
+    GBX • Made by ItsGoobix • 2026
+  </footer>
 
 </body>
 </html>
