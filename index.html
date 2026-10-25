@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GBX | ItsGoobix</title>
+  <title>GBX | Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0f;
-      --card: #12121a;
-      --red: #ff2a2a;
-      --blue: #5865F2;
-      --accent: #00f0ff;
-      --text: #f0f0f5;
-      --muted: #a0a0b0;
+      --bg: #0c0c0c;
+      --orange: #ff6b00;
+      --orange-dark: #e05a00;
+      --card: #161616;
+      --text: #f5f5f5;
+      --muted: #b0b0b0;
     }
 
     * {
@@ -46,10 +45,11 @@
       text-align: center;
       position: relative;
       background: 
-        radial-gradient(ellipse at 20% 50%, rgba(88, 101, 242, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(255, 42, 42, 0.12) 0%, transparent 50%),
-        linear-gradient(180deg, #0a0a0f 0%, #111118 100%);
+        radial-gradient(ellipse at 30% 20%, rgba(255, 107, 0, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 70% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #0c0c0c 0%, #1a0f00 100%);
       overflow: hidden;
+      padding: 2rem;
     }
 
     .hero::before {
@@ -57,25 +57,24 @@
       position: absolute;
       inset: 0;
       background-image: 
-        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      animation: gridMove 20s linear infinite;
+        linear-gradient(rgba(255, 107, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 107, 0, 0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 25s linear infinite;
       pointer-events: none;
     }
 
     @keyframes gridMove {
       0% { transform: translateY(0); }
-      100% { transform: translateY(40px); }
+      100% { transform: translateY(50px); }
     }
 
     .avatar-float {
-      width: 160px;
-      height: 160px;
-      margin-bottom: 2rem;
-      position: relative;
-      animation: float 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.4));
+      width: 150px;
+      height: 150px;
+      margin-bottom: 1.8rem;
+      animation: float 3.2s ease-in-out infinite;
+      filter: drop-shadow(0 0 25px rgba(255, 107, 0, 0.5));
     }
 
     .avatar-float img {
@@ -87,232 +86,279 @@
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-18px); }
+      50% { transform: translateY(-16px); }
     }
 
-    /* ===== STYLED GBX LOGO ===== */
     .logo {
       font-family: 'Press Start 2P', cursive;
-      font-size: clamp(3.5rem, 12vw, 6.5rem);
-      letter-spacing: 0.12em;
-      margin-bottom: 0.6rem;
-      background: linear-gradient(90deg, #ffffff 0%, #00f0ff 50%, #ffffff 100%);
+      font-size: clamp(3.8rem, 13vw, 7rem);
+      letter-spacing: 0.15em;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(90deg, #fff 0%, #ff6b00 40%, #ffaa00 60%, #fff 100%);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: shine 4s linear infinite;
-      text-shadow: 0 0 40px rgba(0, 240, 255, 0.35);
-      position: relative;
-    }
-
-    .logo::after {
-      content: 'GBX';
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: -1;
-      background: none;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 
-        0 0 20px rgba(0, 240, 255, 0.6),
-        0 0 40px rgba(0, 240, 255, 0.4);
+      animation: shine 5s linear infinite;
     }
 
     @keyframes shine {
       to { background-position: 200% center; }
     }
 
-    .tagline {
+    .hero-title {
+      font-size: clamp(1.3rem, 4vw, 1.7rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-sub {
       color: var(--muted);
-      font-size: 1.15rem;
+      font-size: 1.05rem;
+      max-width: 520px;
       margin-bottom: 2.8rem;
-      letter-spacing: 0.05em;
+      line-height: 1.7;
     }
 
     .cta-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: linear-gradient(135deg, var(--accent), #00a8ff);
+      background: linear-gradient(135deg, var(--orange), #ff9500);
       color: #000;
       font-weight: 800;
       font-size: 1.05rem;
-      padding: 1rem 2.2rem;
+      padding: 1rem 2.3rem;
       border: none;
       border-radius: 999px;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.3s ease;
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
-      position: relative;
-      z-index: 2;
+      box-shadow: 0 0 35px rgba(255, 107, 0, 0.45);
     }
 
     .cta-btn:hover {
       transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 0 50px rgba(0, 240, 255, 0.7);
-    }
-
-    /* ===== POINTER CHARACTER ===== */
-    .pointer-guide {
-      position: absolute;
-      bottom: 40px;
-      right: 8%;
-      width: 110px;
-      animation: pointBounce 2s ease-in-out infinite;
-      z-index: 5;
-      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.3));
-    }
-
-    .pointer-guide img {
-      width: 100%;
-      image-rendering: pixelated;
-      transform: scaleX(-1);
-    }
-
-    .pointer-guide .arrow {
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 1.8rem;
-      animation: arrowPulse 1.2s ease-in-out infinite;
-    }
-
-    @keyframes pointBounce {
-      0%, 100% { transform: translateY(0) rotate(-8deg); }
-      50% { transform: translateY(-12px) rotate(5deg); }
-    }
-
-    @keyframes arrowPulse {
-      0%, 100% { opacity: 0.6; transform: translateX(-50%) translateY(0); }
-      50% { opacity: 1; transform: translateX(-50%) translateY(-6px); }
+      box-shadow: 0 0 55px rgba(255, 107, 0, 0.7);
     }
 
     /* ===== ABOUT ===== */
     .about {
-      padding: 6rem 1.5rem;
-      max-width: 800px;
+      padding: 5.5rem 1.5rem;
+      max-width: 780px;
       margin: 0 auto;
     }
 
     .section-title {
       font-family: 'Press Start 2P', cursive;
-      font-size: 1.4rem;
-      margin-bottom: 2rem;
+      font-size: 1.35rem;
+      margin-bottom: 1.8rem;
       text-align: center;
-      color: var(--accent);
+      color: var(--orange);
     }
 
     .about-card {
       background: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 107, 0, 0.2);
       border-radius: 20px;
-      padding: 2.5rem;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      padding: 2.4rem;
+      font-size: 1.08rem;
+      line-height: 1.85;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     }
 
     .about-card strong {
-      color: var(--accent);
+      color: var(--orange);
     }
 
-    /* ===== SOCIAL CARDS ===== */
-    .socials {
-      padding: 4rem 1.5rem 6rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      max-width: 900px;
-      margin: 0 auto;
+    /* ===== UPCOMING BUTTON ===== */
+    .upcoming-wrap {
+      text-align: center;
+      padding: 1rem 1.5rem 4rem;
     }
 
-    .social-card {
-      display: flex;
+    .upcoming-btn {
+      display: inline-flex;
       align-items: center;
-      gap: 2rem;
-      padding: 2.5rem 3rem;
-      border-radius: 24px;
+      gap: 0.7rem;
+      background: transparent;
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.95rem 2.4rem;
+      border-radius: 999px;
       text-decoration: none;
-      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .upcoming-btn:hover {
+      background: var(--orange);
+      color: #000;
+      box-shadow: 0 0 30px rgba(255, 107, 0, 0.5);
+      transform: translateY(-3px);
+    }
+
+    /* ===== YOUTUBE SECTION ===== */
+    .youtube-section {
       position: relative;
+      padding: 5rem 1.5rem;
       overflow: hidden;
-      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+      background: #1a0000;
     }
 
-    .social-card:hover {
-      transform: translateY(-8px) scale(1.02);
-    }
-
-    .social-card.youtube {
-      background: linear-gradient(135deg, #ff2a2a, #cc0000);
-    }
-
-    .social-card.discord {
-      background: linear-gradient(135deg, #5865F2, #404eed);
-    }
-
-    .social-card .icon {
-      font-size: 3.5rem;
-      flex-shrink: 0;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
-    }
-
-    .social-card .info h3 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 0.3rem;
-    }
-
-    .social-card .info p {
-      opacity: 0.9;
-      font-size: 1.05rem;
-    }
-
-    .social-card .arrow {
-      margin-left: auto;
-      font-size: 2rem;
-      opacity: 0.7;
-      transition: transform 0.3s;
-    }
-
-    .social-card:hover .arrow {
-      transform: translateX(8px);
-      opacity: 1;
-    }
-
-    .social-card::after {
-      content: '';
+    /* flowing logos background */
+    .yt-bg {
       position: absolute;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      top: -50px;
-      right: -50px;
+      inset: 0;
+      opacity: 0.12;
       pointer-events: none;
+      background-image: url('youtube.png');
+      background-size: 90px;
+      background-repeat: repeat;
+      animation: flow 40s linear infinite;
+    }
+
+    @keyframes flow {
+      0% { background-position: 0 0; }
+      100% { background-position: 400px 400px; }
+    }
+
+    .yt-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .yt-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 1.5rem;
+      filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.6));
+    }
+
+    .yt-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .yt-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(90deg, #ff2a2a, #00aaff, #ff2a2a);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glowText 3s linear infinite;
+    }
+
+    @keyframes glowText {
+      to { background-position: 200% center; }
+    }
+
+    .yt-sub {
+      color: #ffcccc;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .yt-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: #ff0000;
+      color: white;
+      font-weight: 800;
+      font-size: 1.15rem;
+      padding: 1.1rem 2.6rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+    }
+
+    .yt-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 0 50px rgba(255, 0, 0, 0.75);
+    }
+
+    /* ===== DISCORD SECTION ===== */
+    .discord-section {
+      padding: 5rem 1.5rem;
+      background: #0d0d1a;
+      text-align: center;
+    }
+
+    .discord-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 1.5rem;
+      filter: drop-shadow(0 0 20px rgba(88, 101, 242, 0.6));
+    }
+
+    .discord-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .discord-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #5865F2;
+      margin-bottom: 0.6rem;
+      text-shadow: 0 0 25px rgba(88, 101, 242, 0.5);
+    }
+
+    .discord-sub {
+      color: #b0b8ff;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .discord-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: #5865F2;
+      color: white;
+      font-weight: 800;
+      font-size: 1.15rem;
+      padding: 1.1rem 2.6rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(88, 101, 242, 0.5);
+    }
+
+    .discord-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 0 50px rgba(88, 101, 242, 0.75);
     }
 
     /* ===== CONTACT ===== */
     .contact {
       text-align: center;
       padding: 5rem 1.5rem 3rem;
-      background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.05));
+      background: linear-gradient(180deg, transparent, rgba(255, 107, 0, 0.06));
     }
 
     .contact h2 {
       font-family: 'Press Start 2P', cursive;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       margin-bottom: 1rem;
-      color: var(--accent);
+      color: var(--orange);
     }
 
     .contact p {
       color: var(--muted);
       margin-bottom: 2rem;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
     }
 
     .email-btn {
@@ -320,8 +366,8 @@
       align-items: center;
       gap: 0.7rem;
       background: var(--card);
-      border: 2px solid var(--accent);
-      color: var(--accent);
+      border: 2px solid var(--orange);
+      color: var(--orange);
       font-weight: 700;
       font-size: 1.15rem;
       padding: 1rem 2.4rem;
@@ -331,28 +377,27 @@
     }
 
     .email-btn:hover {
-      background: var(--accent);
+      background: var(--orange);
       color: #000;
-      box-shadow: 0 0 40px rgba(0, 240, 255, 0.5);
+      box-shadow: 0 0 40px rgba(255, 107, 0, 0.5);
       transform: translateY(-3px);
     }
 
-    /* ===== FALLING AVATAR ===== */
+    /* ===== FALLING ===== */
     .falling-section {
-      height: 280px;
+      height: 260px;
       position: relative;
       overflow: hidden;
-      margin-top: 2rem;
     }
 
     .falling-avatar {
       position: absolute;
       left: 50%;
-      top: -120px;
-      width: 90px;
+      top: -100px;
+      width: 85px;
       transform: translateX(-50%);
-      animation: fall 4.5s ease-in forwards;
-      animation-delay: 0.5s;
+      animation: fall 4.2s ease-in forwards;
+      animation-delay: 0.4s;
       opacity: 0;
     }
 
@@ -363,15 +408,13 @@
 
     @keyframes fall {
       0% {
-        top: -120px;
+        top: -100px;
         opacity: 1;
         transform: translateX(-50%) rotate(0deg);
       }
-      70% {
-        opacity: 1;
-      }
+      70% { opacity: 1; }
       100% {
-        top: 220px;
+        top: 200px;
         opacity: 0;
         transform: translateX(-50%) rotate(720deg);
       }
@@ -382,21 +425,12 @@
       padding: 2rem;
       color: var(--muted);
       font-size: 0.9rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid rgba(255, 107, 0, 0.15);
     }
 
     @media (max-width: 600px) {
-      .social-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 2rem 1.5rem;
-        gap: 1.2rem;
-      }
-      .social-card .arrow {
-        margin-left: 0;
-      }
-      .pointer-guide {
-        display: none;
+      .yt-title, .discord-title {
+        font-size: 1.9rem;
       }
     }
   </style>
@@ -406,55 +440,68 @@
   <!-- HERO -->
   <section class="hero">
     <div class="avatar-float">
-      <img src="goobix.png" alt="Goobix Minecraft Avatar" />
+      <img src="goobix.png" alt="GBX" />
     </div>
 
     <div class="logo">GBX</div>
-    <p class="tagline">ItsGoobix • Gamer & Creator</p>
+
+    <h1 class="hero-title">we make things worth reading</h1>
+    <p class="hero-sub">
+      GBX Studio is a small creative studio.<br>
+      Scroll down to learn about me and find my channels.
+    </p>
 
     <a href="#about" class="cta-btn">
       What is this website about?
     </a>
-
-    <div class="pointer-guide">
-      <div class="arrow">👇</div>
-      <img src="goobix.png" alt="pointing" />
-    </div>
   </section>
 
-  <!-- ABOUT ME -->
+  <!-- ABOUT -->
   <section class="about" id="about">
     <h2 class="section-title">About Me</h2>
     <div class="about-card">
       In <strong>2022</strong> I started gaming and watched YouTube videos.  
       I liked how the creators were adding as much creativity as they could and I thought to myself  
-      <em>“why don’t I start making content?”</em>  
+      <em>“why don’t I start making content?”</em><br><br>
 
-      So I started learning how to edit. First in a few years I learned pretty much everything about editing.  
+      So I started learning how to edit. In a few years I learned pretty much everything about editing.<br><br>
 
-      In <strong>2025</strong> I started learning how to make sites and scripts and stuff.  
+      In <strong>2025</strong> I started learning how to make sites and scripts.  
       This site took me a year to accomplish — so please <strong>subscribe</strong>!
     </div>
   </section>
 
-  <!-- SOCIAL LINKS -->
-  <section class="socials">
-    <a href="https://www.youtube.com/@ItsGoobix" target="_blank" class="social-card youtube">
-      <div class="icon">▶️</div>
-      <div class="info">
-        <h3>YouTube</h3>
-        <p>Subscribe for gaming videos & more</p>
-      </div>
-      <div class="arrow">→</div>
+  <!-- UPCOMING VIDEOS BUTTON -->
+  <div class="upcoming-wrap">
+    <a href="#youtube" class="upcoming-btn">
+      Upcoming Videos →
     </a>
+  </div>
 
-    <a href="https://discord.gg/Ftvm3hVGb7" target="_blank" class="social-card discord">
-      <div class="icon">💬</div>
-      <div class="info">
-        <h3>Discord</h3>
-        <p>Join the community & chat with me</p>
+  <!-- YOUTUBE -->
+  <section class="youtube-section" id="youtube">
+    <div class="yt-bg"></div>
+    <div class="yt-content">
+      <div class="yt-icon">
+        <img src="youtube.png" alt="YouTube" />
       </div>
-      <div class="arrow">→</div>
+      <h2 class="yt-title">YouTube</h2>
+      <p class="yt-sub">Click to visit my channel</p>
+      <a href="https://www.youtube.com/@ItsGoobix" target="_blank" class="yt-btn">
+        Go to Channel
+      </a>
+    </div>
+  </section>
+
+  <!-- DISCORD -->
+  <section class="discord-section">
+    <div class="discord-icon">
+      <img src="discord.png" alt="Discord" />
+    </div>
+    <h2 class="discord-title">Discord</h2>
+    <p class="discord-sub">Join the community</p>
+    <a href="https://discord.gg/Ftvm3hVGb7" target="_blank" class="discord-btn">
+      Join Server
     </a>
   </section>
 
@@ -463,19 +510,19 @@
     <h2>Contact Me</h2>
     <p>If you need any help, just reach out!</p>
     <a href="mailto:itsgoobix@gmail.com" class="email-btn">
-      ✉️ itsgoobix@gmail.com
+      itsgoobix@gmail.com
     </a>
   </section>
 
-  <!-- FALLING AVATAR -->
+  <!-- FALLING -->
   <div class="falling-section">
     <div class="falling-avatar">
-      <img src="goobix.png" alt="falling goobix" />
+      <img src="goobix.png" alt="" />
     </div>
   </div>
 
   <footer>
-    GBX • Made by ItsGoobix • 2026
+    GBX Studio • 2026
   </footer>
 
 </body>
