@@ -1,612 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GBX | Studio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0c0c0c;
-      --orange: #ff6b00;
-      --card: #161616;
-      --text: #f5f5f5;
-      --muted: #b0b0b0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erzy’s Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Orbitron:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050505; --text:#e9e9e9;
+  --green:#39ff6a; --red:#ff2b3a;
+  --head:'Orbitron','Segoe UI',sans-serif;
+  --body:'Poppins','Segoe UI',sans-serif;
+  --ash:'Cinzel',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.7;overflow-x:hidden}
+section{max-width:960px;margin:0 auto;padding:90px 22px}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:radial-gradient(circle at 50% 40%,#1a1a1a 0%,var(--bg) 65%)}
+.glow-white{font-family:var(--head);font-weight:800;color:#fff;letter-spacing:.06em;
+  text-shadow:0 0 6px #fff,0 0 18px #fff,0 0 40px rgba(255,255,255,.7),0 0 80px rgba(255,255,255,.4);
+  animation:pulse 3s ease-in-out infinite}
+.hero h1{font-size:clamp(2.2rem,8vw,5rem)}
+.hero p{margin-top:14px;color:#aaa;font-weight:300}
+@keyframes pulse{50%{text-shadow:0 0 4px #fff,0 0 12px #fff,0 0 28px rgba(255,255,255,.6),0 0 55px rgba(255,255,255,.25)}}
+.scroll{margin-top:40px;color:#fff;text-decoration:none;font-size:1.6rem;animation:bob 1.6s infinite}
+@keyframes bob{50%{transform:translateY(10px)}}
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', system-ui, sans-serif;
-      line-height: 1.7;
-      overflow-x: hidden;
-      transition: background 0.4s ease;
-    }
+/* ABOUT */
+h2{font-family:var(--head);font-size:clamp(1.6rem,5vw,2.6rem);margin-bottom:26px;text-align:center}
+.year-wrap{position:relative;text-align:center;height:150px;margin-bottom:10px}
+#ash{position:absolute;inset:0;width:100%;height:100%}
+.year{position:relative;font-family:var(--ash);font-weight:800;font-size:clamp(4rem,16vw,8rem);
+  color:#8a8a8a;line-height:150px;
+  background:linear-gradient(#cfcfcf,#6b6b6b 55%,#2b2b2b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:blur(.4px);animation:crumble 5s ease-in-out infinite}
+@keyframes crumble{50%{filter:blur(1.6px);opacity:.75;letter-spacing:.06em}}
+.about-text{max-width:680px;margin:0 auto;font-size:1.05rem;color:#ddd;text-align:center}
+.about-text b{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.7)}
+.about-text em{font-style:normal;color:var(--green);text-shadow:0 0 10px var(--green)}
 
-    /* SETTINGS */
-    .settings-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 48px;
-      height: 48px;
-      background: rgba(255, 107, 0, 0.15);
-      border: 2px solid var(--orange);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 1000;
-      font-size: 1.4rem;
-      transition: all 0.3s ease;
-    }
-    .settings-btn:hover {
-      background: var(--orange);
-      transform: rotate(90deg) scale(1.1);
-    }
+/* LINKS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.card{display:flex;flex-direction:column;align-items:center;gap:14px;padding:34px 20px;border:1px solid #2a2a2a;border-radius:18px;
+  background:#0d0d0d;color:#fff;text-decoration:none;transition:transform .3s,box-shadow .3s,border-color .3s}
+.card:hover{transform:translateY(-8px)}
+.card.tt:hover{border-color:#25f4ee;box-shadow:0 0 28px #25f4ee66,0 0 28px #fe2c5566}
+.card.yt:hover{border-color:#ff0000;box-shadow:0 0 30px #ff000088}
+.card h3{font-family:var(--head);font-size:1.2rem}
+.card span{color:#999;font-size:.9rem}
+.card svg{width:84px;height:84px}
+.tt svg{animation:float 2.6s ease-in-out infinite}
+.tt .c1{fill:#25f4ee;animation:jitterA 1.4s infinite}
+.tt .c2{fill:#fe2c55;animation:jitterB 1.4s infinite}
+.tt .c3{fill:#fff}
+@keyframes float{50%{transform:translateY(-8px) rotate(-4deg)}}
+@keyframes jitterA{50%{transform:translate(-3px,-2px)}}
+@keyframes jitterB{50%{transform:translate(3px,2px)}}
+.yt svg{animation:beat 1.8s ease-in-out infinite}
+.yt .play{transform-origin:50% 50%;animation:spin 3.6s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(1.12)}}
+@keyframes spin{40%,60%{transform:scale(1.25)}}
 
-    .settings-panel {
-      position: fixed;
-      top: 80px;
-      right: 20px;
-      width: 280px;
-      background: #1a1a1a;
-      border: 1px solid rgba(255, 107, 0, 0.3);
-      border-radius: 16px;
-      padding: 1.5rem;
-      z-index: 999;
-      display: none;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    }
-    .settings-panel.open { display: block; }
+/* WHAT I INTRODUCE */
+.intro{display:grid;gap:34px;text-align:center}
+.big{font-family:var(--head);font-weight:800;font-size:clamp(2.4rem,9vw,4.6rem)}
+.green{color:var(--green);text-shadow:0 0 8px var(--green),0 0 24px var(--green),0 0 60px #1fa84a;animation:flickG 4s infinite}
+.red{color:var(--red);text-shadow:0 0 8px var(--red),0 0 24px var(--red),0 0 60px #a3121c;animation:flickR 4s infinite .8s}
+.edits{color:#fff;text-shadow:0 0 8px #fff,0 0 24px #7aa7ff,0 0 50px #3c6cff}
+@keyframes flickG{0%,92%,100%{opacity:1}94%{opacity:.6}96%{opacity:1}98%{opacity:.7}}
+@keyframes flickR{0%,90%,100%{opacity:1}92%{opacity:.55}94%{opacity:1}97%{opacity:.7}}
+.intro p{color:#aaa;max-width:560px;margin:0 auto}
+.slide{display:inline-block;opacity:0;transform:translateX(-40px);animation:slideIn .8s forwards}
+@keyframes slideIn{to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}
+.reveal.show{opacity:1;transform:none}
 
-    .settings-panel h3 {
-      font-size: 1.1rem;
-      margin-bottom: 1.2rem;
-      color: var(--orange);
-    }
+/* MOTTO */
+.motto{text-align:center;padding-bottom:140px}
+.motto h2{font-size:clamp(1.8rem,7vw,3.4rem);line-height:1.3}
+.never{display:inline-block;color:#fff;animation:shake 2.8s infinite;text-shadow:0 0 14px #fff}
+.step{display:inline-block;background:linear-gradient(90deg,#fff,var(--green),#fff);background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3s linear infinite}
+@keyframes shake{0%,70%,100%{transform:none}74%{transform:translateX(-5px)}78%{transform:translateX(5px)}82%{transform:translateX(-3px)}86%{transform:translateX(3px)}}
+@keyframes shine{to{background-position:200% center}}
+footer{text-align:center;color:#555;padding:30px;font-size:.85rem}
 
-    .bg-options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 1.5rem;
-    }
-    .bg-option {
-      height: 40px;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-    .bg-option.active, .bg-option:hover {
-      border-color: white;
-    }
-
-    .clear-btn {
-      width: 100%;
-      padding: 0.7rem;
-      background: transparent;
-      border: 1px solid #ff4444;
-      color: #ff4444;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .clear-btn:hover {
-      background: #ff4444;
-      color: white;
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      background: 
-        radial-gradient(ellipse at 30% 20%, rgba(255, 107, 0, 0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 70% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
-        linear-gradient(180deg, var(--bg) 0%, #1a0f00 100%);
-      overflow: hidden;
-      padding: 2rem;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(255, 107, 0, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 107, 0, 0.04) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: gridMove 25s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes gridMove {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(50px); }
-    }
-
-    .logo {
-      font-family: 'Press Start 2P', cursive;
-      font-size: clamp(3.8rem, 13vw, 7rem);
-      letter-spacing: 0.15em;
-      margin-bottom: 1.2rem;
-      background: linear-gradient(90deg, #fff 0%, #ff6b00 40%, #ffaa00 60%, #fff 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shine 5s linear infinite;
-    }
-    @keyframes shine {
-      to { background-position: 200% center; }
-    }
-
-    .hero-title {
-      font-size: clamp(1.35rem, 4vw, 1.8rem);
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 0.8rem;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards 0.3s;
-    }
-    .hero-sub {
-      color: var(--muted);
-      font-size: 1.1rem;
-      max-width: 540px;
-      margin-bottom: 2.8rem;
-      line-height: 1.7;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards 0.6s;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(25px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .cta-btn {
-      display: inline-flex;
-      background: linear-gradient(135deg, var(--orange), #ff9500);
-      color: #000;
-      font-weight: 800;
-      font-size: 1.05rem;
-      padding: 1rem 2.4rem;
-      border-radius: 999px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 35px rgba(255, 107, 0, 0.45);
-      opacity: 0;
-      animation: fadeUp 1s ease forwards 0.9s;
-    }
-    .cta-btn:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 0 55px rgba(255, 107, 0, 0.7);
-    }
-
-    /* ABOUT */
-    .about {
-      padding: 5.5rem 1.5rem;
-      max-width: 780px;
-      margin: 0 auto;
-    }
-    .section-title {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 1.35rem;
-      margin-bottom: 1.8rem;
-      text-align: center;
-      color: var(--orange);
-      position: relative;
-      display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--orange), transparent);
-      border-radius: 2px;
-    }
-
-    .about-card {
-      background: var(--card);
-      border: 1px solid rgba(255, 107, 0, 0.2);
-      border-radius: 20px;
-      padding: 2.5rem;
-      font-size: 1.1rem;
-      line-height: 1.85;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      animation: fadeUp 1s ease forwards 0.2s;
-    }
-    .about-card strong {
-      color: var(--orange);
-      position: relative;
-    }
-    .about-card strong::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--orange);
-      opacity: 0.6;
-    }
-
-    /* UPCOMING */
-    .upcoming-wrap {
-      text-align: center;
-      padding: 1rem 1.5rem 4rem;
-    }
-    .upcoming-btn {
-      display: inline-flex;
-      border: 2px solid var(--orange);
-      color: var(--orange);
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 0.95rem 2.4rem;
-      border-radius: 999px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .upcoming-btn:hover {
-      background: var(--orange);
-      color: #000;
-      box-shadow: 0 0 30px rgba(255, 107, 0, 0.5);
-    }
-
-    /* YOUTUBE */
-    .youtube-section {
-      padding: 5rem 1.5rem;
-      background: #1a0000;
-      text-align: center;
-    }
-    .yt-icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 1.5rem;
-      background: #ff0000;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .yt-icon svg { width: 42px; fill: white; }
-    .yt-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 0.6rem;
-      background: linear-gradient(90deg, #ff2a2a, #00aaff, #ff2a2a);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glowText 3s linear infinite;
-    }
-    @keyframes glowText {
-      to { background-position: 200% center; }
-    }
-    .yt-btn {
-      display: inline-flex;
-      background: #ff0000;
-      color: white;
-      font-weight: 800;
-      font-size: 1.15rem;
-      padding: 1.1rem 2.6rem;
-      border-radius: 999px;
-      text-decoration: none;
-      margin-top: 1rem;
-      transition: 0.3s;
-    }
-    .yt-btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 40px rgba(255,0,0,0.6);
-    }
-
-    /* DISCORD */
-    .discord-section {
-      padding: 5rem 1.5rem;
-      background: #0d0d1a;
-      text-align: center;
-    }
-    .discord-icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 1.5rem;
-      background: #5865F2;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .discord-icon svg { width: 42px; fill: white; }
-    .discord-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #5865F2;
-      margin-bottom: 0.6rem;
-      text-shadow: 0 0 25px rgba(88, 101, 242, 0.5);
-    }
-    .discord-btn {
-      display: inline-flex;
-      background: #5865F2;
-      color: white;
-      font-weight: 800;
-      font-size: 1.15rem;
-      padding: 1.1rem 2.6rem;
-      border-radius: 999px;
-      text-decoration: none;
-      margin-top: 1rem;
-      transition: 0.3s;
-    }
-    .discord-btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 40px rgba(88,101,242,0.6);
-    }
-
-    /* CONTACT */
-    .contact {
-      text-align: center;
-      padding: 5rem 1.5rem 2rem;
-    }
-    .contact h2 {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-      color: var(--orange);
-      position: relative;
-      display: inline-block;
-    }
-    .contact h2::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--orange), transparent);
-    }
-    .email-btn {
-      display: inline-flex;
-      border: 2px solid var(--orange);
-      color: var(--orange);
-      font-weight: 700;
-      font-size: 1.15rem;
-      padding: 1rem 2.4rem;
-      border-radius: 999px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .email-btn:hover {
-      background: var(--orange);
-      color: #000;
-    }
-
-    /* COOKIE SECTION */
-    .cookie-section {
-      text-align: center;
-      padding: 3rem 1.5rem 5rem;
-    }
-
-    .cookie {
-      width: 110px;
-      height: 110px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      image-rendering: pixelated;
-      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4));
-    }
-    .cookie:hover {
-      transform: scale(1.1) rotate(5deg);
-    }
-    .cookie.cracked {
-      animation: crack 0.6s ease forwards;
-    }
-    @keyframes crack {
-      0% { transform: scale(1); }
-      30% { transform: scale(1.2) rotate(-8deg); }
-      60% { transform: scale(0.9) rotate(8deg); }
-      100% { transform: scale(0) rotate(20deg); opacity: 0; }
-    }
-
-    .thank-you {
-      margin-top: 1.5rem;
-      font-size: 1.25rem;
-      font-weight: 600;
-      opacity: 0;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-    }
-    .thank-you.show {
-      animation: fadeInMessage 0.8s ease forwards;
-    }
-    .thank-you .subscribe {
-      color: #ff2a2a;
-      font-weight: 800;
-      font-size: 1.4rem;
-      text-shadow: 0 0 15px rgba(255, 42, 42, 0.8), 0 0 30px rgba(255, 42, 42, 0.5);
-      animation: glowRed 1.5s ease-in-out infinite alternate;
-    }
-    @keyframes glowRed {
-      from { text-shadow: 0 0 10px rgba(255,42,42,0.6); }
-      to { text-shadow: 0 0 25px rgba(255,42,42,1), 0 0 40px rgba(255,42,42,0.7); }
-    }
-    @keyframes fadeInMessage {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .thank-you.fade-out {
-      animation: fadeOut 1.5s ease forwards;
-    }
-    @keyframes fadeOut {
-      to { opacity: 0; transform: translateY(-10px); }
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(255, 107, 0, 0.15);
-    }
-  </style>
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.slide{opacity:1;transform:none}}
+a:focus-visible{outline:3px solid #fff;outline-offset:4px}
+</style>
 </head>
 <body>
 
-  <!-- SETTINGS -->
-  <div class="settings-btn" onclick="playClick(); toggleSettings()">⚙️</div>
-  <div class="settings-panel" id="settingsPanel">
-    <h3>Settings</h3>
-    <p style="font-size:0.9rem;color:#aaa;margin-bottom:10px;">Background Color</p>
-    <div class="bg-options">
-      <div class="bg-option active" style="background:#0c0c0c" onclick="playClick();changeBg('#0c0c0c',this)"></div>
-      <div class="bg-option" style="background:#1a0a00" onclick="playClick();changeBg('#1a0a00',this)"></div>
-      <div class="bg-option" style="background:#0a0a1a" onclick="playClick();changeBg('#0a0a1a',this)"></div>
-      <div class="bg-option" style="background:#001a0a" onclick="playClick();changeBg('#001a0a',this)"></div>
-      <div class="bg-option" style="background:#1a001a" onclick="playClick();changeBg('#1a001a',this)"></div>
-      <div class="bg-option" style="background:#000" onclick="playClick();changeBg('#000',this)"></div>
-    </div>
-    <button class="clear-btn" onclick="playClick();clearAll()">Clear Everything & Reset</button>
+<header class="hero">
+  <h1 class="glow-white">ERZY’S PROJECT</h1>
+  <p>Edits · Manga · Tutorials</p>
+  <a class="scroll" href="#about" aria-label="Scroll to About me">&#8595;</a>
+</header>
+
+<section id="about">
+  <h2 class="glow-white">About Me</h2>
+  <div class="year-wrap">
+    <canvas id="ash"></canvas>
+    <div class="year">2024</div>
   </div>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="logo">GBX</div>
-    <h1 class="hero-title">we make things worth reading</h1>
-    <p class="hero-sub">
-      GBX Studio is a small creative studio.<br>
-      Scroll down to learn about me and find my channels.
-    </p>
-    <a href="#about" class="cta-btn" onclick="playClick()">What is this website about?</a>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <h2 class="section-title">About Me</h2>
-    <div class="about-card">
-      In <strong>2022</strong> I started gaming and watched YouTube videos.<br><br>
-      I liked how the creators were adding as much creativity as they could and I thought to myself <em>“why don’t I start making content?”</em><br><br>
-      So I started learning how to edit. In a few years I learned pretty much everything about editing.<br><br>
-      In <strong>2025</strong> I started learning how to make sites and scripts.<br>
-      This site took me a year to accomplish — so please <strong>subscribe</strong>!
-    </div>
-  </section>
-
-  <div class="upcoming-wrap">
-    <a href="#youtube" class="upcoming-btn" onclick="playClick()">Upcoming Videos →</a>
+  <div class="about-text reveal">
+    <p>Hello, I’m <b>Erzy</b>. In 2024 I was watching edits and suddenly got some motivation, so I started a channel and edited for so long. But I quit that channel and started a new one, since it didn’t get anywhere. So I practiced and learned how to edit until I finally got it.</p>
+    <p style="margin-top:18px">I’m going to make a new <em>manga</em> that’s a little similar to Black Clover, and hopefully it turns out pretty good.</p>
   </div>
+</section>
 
-  <!-- YOUTUBE -->
-  <section class="youtube-section" id="youtube">
-    <div class="yt-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    <h2 class="yt-title">YouTube</h2>
-    <p style="color:#ffcccc;margin-bottom:1rem;">Click to visit my channel</p>
-    <a href="https://www.youtube.com/@ItsGoobix" target="_blank" class="yt-btn" onclick="playClick()">Go to Channel</a>
-  </section>
+<section id="links">
+  <h2 class="glow-white">Find Me</h2>
+  <div class="cards">
+    <a class="card tt" href="https://www.tiktok.com/@erzyvfx" target="_blank" rel="noopener">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <path class="c1" d="M32 6c.6 4.4 3.2 7.2 8 7.6v5.6c-3 0-5.600-.9-8-2.500v12.300c0 6.600-5.100 11-11 11s-10.300-4.600-10.300-10.300S14.700 18 21 18.400v5.800c-3.200-.6-5 1.700-5 4.200 0 2.300 1.800 4.200 4.200 4.200 2.700 0 4.300-1.800 4.300-4.600V6z" transform="translate(-1.500 -1)"/>
+        <path class="c2" d="M32 6c.6 4.4 3.200 7.200 8 7.600v5.600c-3 0-5.600-.9-8-2.500v12.300c0 6.600-5.100 11-11 11s-10.300-4.600-10.300-10.300S14.700 18 21 18.400v5.800c-3.200-.6-5 1.700-5 4.200 0 2.300 1.800 4.200 4.200 4.200 2.700 0 4.300-1.800 4.300-4.600V6z" transform="translate(1.500 1)"/>
+        <path class="c3" d="M32 6c.6 4.400 3.200 7.200 8 7.600v5.600c-3 0-5.600-.9-8-2.500v12.300c0 6.600-5.100 11-11 11s-10.300-4.600-10.300-10.300S14.700 18 21 18.400v5.800c-3.200-.6-5 1.700-5 4.200 0 2.300 1.800 4.200 4.200 4.200 2.700 0 4.300-1.800 4.300-4.600V6z"/>
+      </svg>
+      <h3>TikTok</h3>
+      <span>@erzyvfx</span>
+    </a>
+    <a class="card yt" href="https://www.youtube.com/@erzydagoat" target="_blank" rel="noopener">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="3" y="9" width="42" height="30" rx="9" fill="#ff0000"/>
+        <path class="play" d="M20 17l11 7-11 7z" fill="#fff"/>
+      </svg>
+      <h3>YouTube</h3>
+      <span>@erzydagoat</span>
+    </a>
+  </div>
+</section>
 
-  <!-- DISCORD -->
-  <section class="discord-section">
-    <div class="discord-icon"><svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></div>
-    <h2 class="discord-title">Discord</h2>
-    <p style="color:#b0b8ff;margin-bottom:1rem;">Join the community</p>
-    <a href="https://discord.gg/Ftvm3hVGb7" target="_blank" class="discord-btn" onclick="playClick()">Join Server</a>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact">
-    <h2>Contact Me</h2>
-    <p style="color:var(--muted);margin-bottom:1.5rem;">If you need any help, just reach out!</p>
-    <a href="mailto:itsgoobix@gmail.com" class="email-btn" onclick="playClick()">itsgoobix@gmail.com</a>
-  </section>
-
-  <!-- COOKIE -->
-  <section class="cookie-section">
-    <img src="cookie.png" alt="Cookie" class="cookie" id="cookie" onclick="crackCookie()">
-    <div class="thank-you" id="thankYou">
-      Thank you for visiting my website.<br>
-      I really appreciate it if you would<br>
-      <span class="subscribe">SUBSCRIBE</span>
+<section id="introduce">
+  <h2 class="glow-white">What I’ll Introduce</h2>
+  <div class="intro">
+    <div class="reveal">
+      <div class="big green">MANGA</div>
+      <p>A new story with a bit of Black Clover energy, made from scratch.</p>
     </div>
-  </section>
+    <div class="reveal">
+      <div class="big edits">EDITS</div>
+      <p>High quality edits with smooth motion and clean effects.</p>
+    </div>
+    <div class="reveal">
+      <div class="big red">TUTORIALS</div>
+      <p>Everything I learned while practicing, shared so you can learn it too.</p>
+    </div>
+  </div>
+</section>
 
-  <footer>GBX Studio • 2026</footer>
+<section class="motto">
+  <h2 class="glow-white">
+    <span class="slide" style="animation-delay:.1s"><span class="never">NEVER GIVE UP,</span></span><br>
+    <span class="slide" style="animation-delay:.7s">instead learn</span><br>
+    <span class="slide" style="animation-delay:1.3s"><span class="step">STEP BY STEP</span></span>
+  </h2>
+</section>
 
-  <script>
-    // Click sound
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    function playClick() {
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.frequency.value = 800;
-      osc.type = 'square';
-      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.08);
+<footer>© 2024 Erzy’s Project</footer>
+
+<script>
+/* Ash particles drifting off the 2024 text */
+(function(){
+  var c=document.getElementById('ash'),x=c.getContext('2d'),p=[],W,H;
+  function size(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight}
+  size();addEventListener('resize',size);
+  function spawn(){
+    p.push({x:W*.2+Math.random()*W*.6,y:H*.55+Math.random()*H*.25,
+      r:Math.random()*2.2+.6,vx:Math.random()*1.2-.2,vy:-(Math.random()*.7+.2),
+      a:Math.random()*.6+.3,g:Math.floor(Math.random()*90+110)});
+  }
+  (function loop(){
+    x.clearRect(0,0,W,H);
+    if(p.length<110)spawn();
+    for(var i=p.length-1;i>=0;i--){
+      var q=p[i];q.x+=q.vx;q.y+=q.vy;q.a-=.004;
+      if(q.a<=0){p.splice(i,1);continue}
+      x.fillStyle='rgba('+q.g+','+q.g+','+q.g+','+q.a+')';
+      x.beginPath();x.arc(q.x,q.y,q.r,0,6.283);x.fill();
     }
+    requestAnimationFrame(loop);
+  })();
+})();
 
-    // Cookie click
-    function crackCookie() {
-      playClick();
-      const cookie = document.getElementById('cookie');
-      const msg = document.getElementById('thankYou');
-
-      cookie.classList.add('cracked');
-      
-      setTimeout(() => {
-        msg.classList.add('show');
-      }, 400);
-
-      setTimeout(() => {
-        msg.classList.add('fade-out');
-      }, 4500);
-    }
-
-    // Settings
-    function toggleSettings() {
-      document.getElementById('settingsPanel').classList.toggle('open');
-    }
-
-    function changeBg(color, el) {
-      document.body.style.background = color;
-      document.documentElement.style.setProperty('--bg', color);
-      localStorage.setItem('bgColor', color);
-      document.querySelectorAll('.bg-option').forEach(e => e.classList.remove('active'));
-      el.classList.add('active');
-    }
-
-    const savedBg = localStorage.getItem('bgColor');
-    if (savedBg) {
-      document.body.style.background = savedBg;
-      document.documentElement.style.setProperty('--bg', savedBg);
-    }
-
-    function clearAll() {
-      localStorage.clear();
-      location.reload();
-    }
-
-    document.addEventListener('click', function(e) {
-      const panel = document.getElementById('settingsPanel');
-      const btn = document.querySelector('.settings-btn');
-      if (panel && !panel.contains(e.target) && !btn.contains(e.target)) {
-        panel.classList.remove('open');
-      }
-    });
-  </script>
+/* Reveal on scroll */
+var io=new IntersectionObserver(function(e){e.forEach(function(i){if(i.isIntersecting){i.target.classList.add('show');io.unobserve(i.target)}})},{threshold:.2});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
 </body>
 </html>
