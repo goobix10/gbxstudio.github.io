@@ -21,8 +21,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:
 section{max-width:960px;margin:0 auto;padding:90px 22px}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  background:radial-gradient(circle at 50% 40%,#1a1a1a 0%,var(--bg) 65%)}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .glow-white{font-family:var(--head);font-weight:800;color:#fff;letter-spacing:.06em;
   text-shadow:0 0 6px #fff,0 0 18px #fff,0 0 40px rgba(255,255,255,.7),0 0 80px rgba(255,255,255,.4);
   animation:pulse 3s ease-in-out infinite}
@@ -91,11 +90,78 @@ h2{font-family:var(--head);font-size:clamp(1.6rem,5vw,2.6rem);margin-bottom:26px
 @keyframes shine{to{background-position:200% center}}
 footer{text-align:center;color:#555;padding:30px;font-size:.85rem}
 
+/* BACKGROUNDS */
+#bg{position:fixed;inset:0;z-index:-1;background:#050505;overflow:hidden}
+#bg::after{content:"";position:absolute;inset:0;pointer-events:none}
+#bg[data-theme=void]{background:radial-gradient(circle at 50% 30%,#1f1f1f 0%,#050505 70%)}
+#bg[data-theme=aurora]{background:linear-gradient(135deg,#0b0f2a,#0d4a52,#3a0f5c,#0b3a22,#0b0f2a);background-size:400% 400%;animation:drift 18s ease infinite}
+#bg[data-theme=stars]{background:radial-gradient(circle at 50% 120%,#1a1040 0%,#05050f 60%)}
+#bg[data-theme=stars]::after{background-image:radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 90px 120px,#fff,transparent),radial-gradient(2px 2px at 160px 60px,#cfe0ff,transparent),radial-gradient(1px 1px at 240px 190px,#fff,transparent),radial-gradient(1.5px 1.5px at 60px 220px,#ffe9c9,transparent);background-size:280px 260px;animation:twinkle 3.5s ease-in-out infinite}
+#bg[data-theme=ember]{background:radial-gradient(circle at 50% 115%,#8a1608 0%,#2c0705 45%,#070202 80%);animation:glowpulse 5s ease-in-out infinite}
+#bg[data-theme=grid]{background:linear-gradient(#020a04,#04200c)}
+#bg[data-theme=grid]::after{background-image:linear-gradient(rgba(57,255,106,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,106,.14) 1px,transparent 1px);background-size:48px 48px;animation:gridmove 4s linear infinite}
+@keyframes drift{50%{background-position:100% 50%}}
+@keyframes twinkle{50%{opacity:.35}}
+@keyframes glowpulse{50%{filter:brightness(1.3)}}
+@keyframes gridmove{to{background-position:0 48px,48px 0}}
+
+/* SETTINGS */
+#gear{position:fixed;right:16px;bottom:16px;z-index:50;width:50px;height:50px;border-radius:50%;border:1px solid #666;background:rgba(15,15,15,.85);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 0 14px rgba(255,255,255,.35);transition:transform .4s}
+#gear:hover{transform:rotate(90deg)}
+#panel{position:fixed;right:16px;bottom:78px;z-index:50;width:min(280px,calc(100vw - 32px));padding:18px;border:1px solid #444;border-radius:16px;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);display:none}
+#panel.open{display:block}
+#panel h4{font-family:var(--head);font-size:.95rem;margin-bottom:12px;color:#fff}
+.themes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.themes button{padding:10px 6px;border-radius:10px;border:1px solid #444;background:#151515;color:#ddd;font:inherit;font-size:.85rem;cursor:pointer}
+.themes button.on{border-color:#fff;color:#fff;box-shadow:0 0 10px rgba(255,255,255,.5)}
+.opt{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:.88rem;color:#ccc}
+.opt input{width:20px;height:20px;accent-color:#39ff6a}
+body.calm *,body.calm *::before,body.calm *::after{animation:none!important}
+body.calm .reveal,body.calm .slide{opacity:1;transform:none}
+body.calm #ash{display:none}
+
+/* GRAPHS */
+.graphs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.gcard{border:1px solid #2a2a2a;border-radius:18px;padding:24px;background:rgba(10,10,10,.72);backdrop-filter:blur(4px)}
+.gcard h3{font-family:var(--head);font-size:1.05rem;margin-bottom:18px;color:#fff}
+.bar{margin-bottom:16px;font-size:.9rem}
+.bar div{display:flex;justify-content:space-between;margin-bottom:5px}
+.bar u{display:block;height:10px;border-radius:6px;background:#1c1c1c;text-decoration:none;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,#fff,var(--c));box-shadow:0 0 12px var(--c);transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.show .bar i{width:var(--v)}
+.gcard svg{width:100%;height:auto;display:block}
+.line{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px #fff);stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 2.2s ease}
+.show .line{stroke-dashoffset:0}
+.area{fill:rgba(255,255,255,.1);opacity:0;transition:opacity 1.5s 1.4s}
+.show .area{opacity:1}
+.dot{fill:#fff;opacity:0;transition:opacity .5s 1.8s}
+.show .dot{opacity:1}
+.gl{stroke:#2a2a2a;stroke-width:1}
+.lbl{fill:#999;font-size:10px;font-family:var(--body)}
+.seg{fill:none;stroke-width:16;stroke-dashoffset:0;transition:stroke-dasharray 1.6s ease}
+.legend{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px;font-size:.85rem}
+.legend b{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;background:var(--c);box-shadow:0 0 8px var(--c)}
+.note{text-align:center;color:#777;font-size:.8rem;margin-top:18px}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.slide{opacity:1;transform:none}}
 a:focus-visible{outline:3px solid #fff;outline-offset:4px}
 </style>
 </head>
 <body>
+<div id="bg" data-theme="void"></div>
+
+<button id="gear" aria-label="Open settings" aria-expanded="false">&#9881;</button>
+<div id="panel" role="dialog" aria-label="Settings">
+  <h4>Settings</h4>
+  <div class="themes">
+    <button data-t="void">Void</button>
+    <button data-t="aurora">Aurora</button>
+    <button data-t="stars">Stars</button>
+    <button data-t="ember">Ember</button>
+    <button data-t="grid">Green Grid</button>
+  </div>
+  <label class="opt">Calm mode (less motion)<input type="checkbox" id="calm"></label>
+</div>
 
 <header class="hero">
   <h1 class="glow-white">ERZY’S PROJECT</h1>
@@ -156,6 +222,41 @@ a:focus-visible{outline:3px solid #fff;outline-offset:4px}
   </div>
 </section>
 
+<section id="progress">
+  <h2 class="glow-white">My Progress</h2>
+  <div class="graphs">
+    <div class="gcard reveal">
+      <h3>Skill levels</h3>
+      <div class="bar" style="--v:85%;--c:#7aa7ff"><div><span>Editing</span><span>85%</span></div><u><i></i></u></div>
+      <div class="bar" style="--v:60%;--c:#39ff6a"><div><span>Manga art</span><span>60%</span></div><u><i></i></u></div>
+      <div class="bar" style="--v:70%;--c:#ffffff"><div><span>Storytelling</span><span>70%</span></div><u><i></i></u></div>
+      <div class="bar" style="--v:50%;--c:#ff2b3a"><div><span>Tutorials</span><span>50%</span></div><u><i></i></u></div>
+    </div>
+    <div class="gcard reveal">
+      <h3>Editing growth</h3>
+      <svg viewBox="0 0 300 170" role="img" aria-label="Line graph of editing skill rising over time">
+        <line class="gl" x1="20" y1="20" x2="290" y2="20"/><line class="gl" x1="20" y1="70" x2="290" y2="70"/><line class="gl" x1="20" y1="120" x2="290" y2="120"/>
+        <path class="area" d="M20 128 L85 110 L150 86 L215 56 L280 38 L280 140 L20 140 Z"/>
+        <path class="line" d="M20 128 L85 110 L150 86 L215 56 L280 38"/>
+        <circle class="dot" cx="20" cy="128" r="4"/><circle class="dot" cx="85" cy="110" r="4"/><circle class="dot" cx="150" cy="86" r="4"/><circle class="dot" cx="215" cy="56" r="4"/><circle class="dot" cx="280" cy="38" r="4"/>
+        <text class="lbl" x="20" y="162" text-anchor="middle">Start</text><text class="lbl" x="85" y="162" text-anchor="middle">3 mo</text><text class="lbl" x="150" y="162" text-anchor="middle">6 mo</text><text class="lbl" x="215" y="162" text-anchor="middle">9 mo</text><text class="lbl" x="280" y="162" text-anchor="middle">Now</text>
+      </svg>
+    </div>
+    <div class="gcard reveal">
+      <h3>Content mix</h3>
+      <svg viewBox="0 0 120 120" role="img" aria-label="Donut chart: edits 50 percent, manga 30 percent, tutorials 20 percent" style="max-width:220px;margin:auto">
+        <g transform="rotate(-90 60 60)">
+          <circle class="seg" cx="60" cy="60" r="40" stroke="#fff" style="stroke-dasharray:0 251.3" data-d="125.7 251.3"/>
+          <circle class="seg" cx="60" cy="60" r="40" stroke="#39ff6a" style="stroke-dasharray:0 251.3;stroke-dashoffset:-125.7" data-d="75.4 251.3"/>
+          <circle class="seg" cx="60" cy="60" r="40" stroke="#ff2b3a" style="stroke-dasharray:0 251.3;stroke-dashoffset:-201.1" data-d="50.3 251.3"/>
+        </g>
+      </svg>
+      <div class="legend"><span style="--c:#fff"><b></b>Edits 50%</span><span style="--c:#39ff6a"><b></b>Manga 30%</span><span style="--c:#ff2b3a"><b></b>Tutorials 20%</span></div>
+    </div>
+  </div>
+  <p class="note">Numbers are placeholders. Change them in the code to match your real progress.</p>
+</section>
+
 <section class="motto">
   <h2 class="glow-white">
     <span class="slide" style="animation-delay:.1s"><span class="never">NEVER GIVE UP,</span></span><br>
@@ -193,6 +294,29 @@ a:focus-visible{outline:3px solid #fff;outline-offset:4px}
 /* Reveal on scroll */
 var io=new IntersectionObserver(function(e){e.forEach(function(i){if(i.isIntersecting){i.target.classList.add('show');io.unobserve(i.target)}})},{threshold:.2});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+/* Donut animation when its card appears */
+document.querySelectorAll('.gcard').forEach(function(g){
+  new MutationObserver(function(){
+    if(g.classList.contains('show')) g.querySelectorAll('.seg').forEach(function(c){c.style.strokeDasharray=c.dataset.d});
+  }).observe(g,{attributes:true,attributeFilter:['class']});
+});
+
+/* Settings: background theme + calm mode, remembered between visits */
+(function(){
+  var bg=document.getElementById('bg'),panel=document.getElementById('panel'),gear=document.getElementById('gear'),
+      calm=document.getElementById('calm'),btns=document.querySelectorAll('.themes button');
+  function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function load(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function setTheme(t){bg.dataset.theme=t;btns.forEach(function(b){b.classList.toggle('on',b.dataset.t===t)});save('erzy-theme',t)}
+  function setCalm(on){document.body.classList.toggle('calm',on);calm.checked=on;save('erzy-calm',on?'1':'0')}
+  btns.forEach(function(b){b.addEventListener('click',function(){setTheme(b.dataset.t)})});
+  calm.addEventListener('change',function(){setCalm(calm.checked)});
+  gear.addEventListener('click',function(){var o=panel.classList.toggle('open');gear.setAttribute('aria-expanded',o)});
+  setTheme(load('erzy-theme')||'void');
+  setCalm(load('erzy-calm')==='1');
+})();
 </script>
 </body>
-</html>
+        </html>
+  
