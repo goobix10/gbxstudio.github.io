@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erzy’s Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Orbitron:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050505; --text:#e9e9e9;
+  --green:#39ff6a; --red:#ff2b3a;
+  --head:'Orbitron','Segoe UI',sans-serif;
+  --body:'Poppins','Segoe UI',sans-serif;
+  --ash:'Cinzel',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.7;overflow-x:hidden}
+section{max-width:960px;margin:0 auto;padding:90px 22px}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.glow-white{font-family:var(--head);font-weight:800;color:#fff;letter-spacing:.06em;
+  text-shadow:0 0 6px #fff,0 0 18px #fff,0 0 40px rgba(255,255,255,.7),0 0 80px rgba(255,255,255,.4);
+  animation:pulse 3s ease-in-out infinite}
+.hero h1{font-size:clamp(2.2rem,8vw,5rem)}
+.hero p{margin-top:14px;color:#aaa;font-weight:300}
+@keyframes pulse{50%{text-shadow:0 0 4px #fff,0 0 12px #fff,0 0 28px rgba(255,255,255,.6),0 0 55px rgba(255,255,255,.25)}}
+.scroll{margin-top:40px;color:#fff;text-decoration:none;font-size:1.6rem;animation:bob 1.6s infinite}
+@keyframes bob{50%{transform:translateY(10px)}}
+
+/* ABOUT */
+h2{font-family:var(--head);font-size:clamp(1.6rem,5vw,2.6rem);margin-bottom:26px;text-align:center}
+.year-wrap{position:relative;text-align:center;height:150px;margin-bottom:10px}
+#ash{position:absolute;inset:0;width:100%;height:100%}
+.year{position:relative;font-family:var(--ash);font-weight:800;font-size:clamp(4rem,16vw,8rem);
+  color:#8a8a8a;line-height:150px;
+  background:linear-gradient(#cfcfcf,#6b6b6b 55%,#2b2b2b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:blur(.4px);animation:crumble 5s ease-in-out infinite}
+@keyframes crumble{50%{filter:blur(1.6px);opacity:.75;letter-spacing:.06em}}
+.about-text{max-width:680px;margin:0 auto;font-size:1.05rem;color:#ddd;text-align:center}
+.about-text b{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.7)}
+.about-text em{font-style:normal;color:var(--green);text-shadow:0 0 10px var(--green)}
+
+/* LINKS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.card{display:flex;flex-direction:column;align-items:center;gap:14px;padding:34px 20px;border:1px solid #2a2a2a;border-radius:18px;
+  background:#0d0d0d;color:#fff;text-decoration:none;transition:transform .3s,box-shadow .3s,border-color .3s}
+.card:hover{transform:translateY(-8px)}
+.card.tt:hover{border-color:#25f4ee;box-shadow:0 0 28px #25f4ee66,0 0 28px #fe2c5566}
+.card.yt:hover{border-color:#ff0000;box-shadow:0 0 30px #ff000088}
+.card h3{font-family:var(--head);font-size:1.2rem}
+.card span{color:#999;font-size:.9rem}
+.card svg{width:84px;height:84px}
+.tt svg{animation:float 2.6s ease-in-out infinite}
+.tt .c1{fill:#25f4ee;animation:jitterA 1.4s infinite}
+.tt .c2{fill:#fe2c55;animation:jitterB 1.4s infinite}
+.tt .c3{fill:#fff}
+@keyframes float{50%{transform:translateY(-8px) rotate(-4deg)}}
+@keyframes jitterA{50%{transform:translate(-3px,-2px)}}
+@keyframes jitterB{50%{transform:translate(3px,2px)}}
+.yt svg{animation:beat 1.8s ease-in-out infinite}
+.yt .play{transform-origin:50% 50%;animation:spin 3.6s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(1.12)}}
+@keyframes spin{40%,60%{transform:scale(1.25)}}
+
+/* WHAT I INTRODUCE */
+.intro{display:grid;gap:34px;text-align:center}
+.big{font-family:var(--head);font-weight:800;font-size:clamp(2.4rem,9vw,4.6rem)}
+.green{color:var(--green);text-shadow:0 0 8px var(--green),0 0 24px var(--green),0 0 60px #1fa84a;animation:flickG 4s infinite}
+.red{color:var(--red);text-shadow:0 0 8px var(--red),0 0 24px var(--red),0 0 60px #a3121c;animation:flickR 4s infinite .8s}
+.edits{color:#fff;text-shadow:0 0 8px #fff,0 0 24px #7aa7ff,0 0 50px #3c6cff}
+@keyframes flickG{0%,92%,100%{opacity:1}94%{opacity:.6}96%{opacity:1}98%{opacity:.7}}
+@keyframes flickR{0%,90%,100%{opacity:1}92%{opacity:.55}94%{opacity:1}97%{opacity:.7}}
+.intro p{color:#aaa;max-width:560px;margin:0 auto}
+.slide{display:inline-block;opacity:0;transform:translateX(-40px);animation:slideIn .8s forwards}
+@keyframes slideIn{to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}
+.reveal.show{opacity:1;transform:none}
+
+/* MOTTO */
+.motto{text-align:center;padding-bottom:140px}
+.motto h2{font-size:clamp(1.8rem,7vw,3.4rem);line-height:1.3}
+.never{display:inline-block;color:#fff;animation:shake 2.8s infinite;text-shadow:0 0 14px #fff}
+.step{display:inline-block;background:linear-gradient(90deg,#fff,var(--green),#fff);background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3s linear infinite}
+@keyframes shake{0%,70%,100%{transform:none}74%{transform:translateX(-5px)}78%{transform:translateX(5px)}82%{transform:translateX(-3px)}86%{transform:translateX(3px)}}
+@keyframes shine{to{background-position:200% center}}
+footer{text-align:center;color:#555;padding:30px;font-size:.85rem}
+
+/* BACKGROUNDS */
+#bg{position:fixed;inset:0;z-index:-1;background:#050505;overflow:hidden}
+#bg::after{content:"";position:absolute;inset:0;pointer-events:none}
+#bg[data-theme=void]{background:radial-gradient(circle at 50% 30%,#1f1f1f 0%,#050505 70%)}
+#bg[data-theme=aurora]{background:linear-gradient(135deg,#0b0f2a,#0d4a52,#3a0f5c,#0b3a22,#0b0f2a);background-size:400% 400%;animation:drift 18s ease infinite}
+#bg[data-theme=stars]{background:radial-gradient(circle at 50% 120%,#1a1040 0%,#05050f 60%)}
+#bg[data-theme=stars]::after{background-image:radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 90px 120px,#fff,transparent),radial-gradient(2px 2px at 160px 60px,#cfe0ff,transparent),radial-gradient(1px 1px at 240px 190px,#fff,transparent),radial-gradient(1.5px 1.5px at 60px 220px,#ffe9c9,transparent);background-size:280px 260px;animation:twinkle 3.5s ease-in-out infinite}
+#bg[data-theme=ember]{background:radial-gradient(circle at 50% 115%,#8a1608 0%,#2c0705 45%,#070202 80%);animation:glowpulse 5s ease-in-out infinite}
+#bg[data-theme=grid]{background:linear-gradient(#020a04,#04200c)}
+#bg[data-theme=grid]::after{background-image:linear-gradient(rgba(57,255,106,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,106,.14) 1px,transparent 1px);background-size:48px 48px;animation:gridmove 4s linear infinite}
+@keyframes drift{50%{background-position:100% 50%}}
+@keyframes twinkle{50%{opacity:.35}}
+@keyframes glowpulse{50%{filter:brightness(1.3)}}
+@keyframes gridmove{to{background-position:0 48px,48px 0}}
+
+/* SETTINGS */
+#gear{position:fixed;right:16px;bottom:16px;z-index:50;width:50px;height:50px;border-radius:50%;border:1px solid #666;background:rgba(15,15,15,.85);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 0 14px rgba(255,255,255,.35);transition:transform .4s}
+#gear:hover{transform:rotate(90deg)}
+#panel{position:fixed;right:16px;bottom:78px;z-index:50;width:min(280px,calc(100vw - 32px));padding:18px;border:1px solid #444;border-radius:16px;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);display:none}
+#panel.open{display:block}
+#panel h4{font-family:var(--head);font-size:.95rem;margin-bottom:12px;color:#fff}
+.themes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.themes button{padding:10px 6px;border-radius:10px;border:1px solid #444;background:#151515;color:#ddd;font:inherit;font-size:.85rem;cursor:pointer}
+.themes button.on{border-color:#fff;color:#fff;box-shadow:0 0 10px rgba(255,255,255,.5)}
+.opt{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:.88rem;color:#ccc}
+.opt input{width:20px;height:20px;accent-color:#39ff6a}
+body.calm *,body.calm *::before,body.calm *::after{animation:none!important}
+body.calm .reveal,body.calm .slide{opacity:1;transform:none}
+body.calm #ash{display:none}
+
+/* GRAPHS */
+.graphs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.gcard{border:1px solid #2a2a2a;border-radius:18px;padding:24px;background:rgba(10,10,10,.72);backdrop-filter:blur(4px)}
+.gcard h3{font-family:var(--head);font-size:1.05rem;margin-bottom:18px;color:#fff}
+.bar{margin-bottom:16px;font-size:.9rem}
+.bar div{display:flex;justify-content:space-between;margin-bottom:5px}
+.bar u{display:block;height:10px;border-radius:6px;background:#1c1c1c;text-decoration:none;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,#fff,var(--c));box-shadow:0 0 12px var(--c);transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.show .bar i{width:var(--v)}
+.gcard svg{width:100%;height:auto;display:block}
+.line{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px #fff);stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 2.2s ease}
+.show .line{stroke-dashoffset:0}
+.area{fill:rgba(255,255,255,.1);opacity:0;transition:opacity 1.5s 1.4s}
+.show .area{opacity:1}
+.dot{fill:#fff;opacity:0;transition:opacity .5s 1.8s}
+.show .dot{opacity:1}
+.gl{stroke:#2a2a2a;stroke-width:1}
+.lbl{fill:#999;font-size:10px;font-family:var(--body)}
+.seg{fill:none;stroke-width:16;stroke-dashoffset:0;transition:stroke-dasharray 1.6s ease}
+.legend{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px;font-size:.85rem}
+.legend b{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;background:var(--c);box-shadow:0 0 8px var(--c)}
+.note{text-align:center;color:#777;font-size:.8rem;margin-top:18px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.slide{opacity:1;transform:none}}
+a:focus-visible{outline:3px solid #fff;outline-offset:4px}
+</style>
+</head>
+<body>
+<div id="bg" data-theme="void"></div>
+
+<button id="gear" aria-label="Open settings" aria-expanded="false">&#9881;</button>
+<div id="panel" role="dialog" aria-label="Settings">
+  <h4>Settings</h4>
+  <div class="themes">
+    <button data-t="void">Void</button>
+    <button data-t="aurora">Aurora</button>
+    <button data-t="stars">Stars</button>
+    <button data-t="ember">Ember</button>
+    <button data-t="grid">Green Grid</button>
+  </div>
+  <label class="opt">Calm mode (less motion)<input type="checkbox" id="calm"></label>
+</div>
+
+<header class="hero">
+  <h1 class="glow-white">ERZY’S PROJECT</h1>
+  <p>Edits · Manga · Tutorials</p>
+  <a class="scroll" href="#about" aria-label="Scroll to About me">&#8595;</a>
+</header>
+
+<section id="about">
+  <h2 class="glow-white">About Me</h2>
+  <div class="year-wrap">
+    <canvas id="ash"></canvas>
+    <div class="year">2024</div>
+  </div>
+  <div class="about-text reveal">
+    <p>Hello, I’m <b>Erzy</b>. In 2024 I was watching edits and suddenly got some motivation, so I started a channel and edited for so long. But I quit that channel and started a new one, since it didn’t get anywhere. So I practiced and learned how to edit until I finally got it.</p>
+    <p style="margin-top:18px">I’m going to make a new <em>manga</em> that’s a little similar to Black Clover, and hopefully it turns out pretty good.</p>
+  </div>
+</section>
+
+<section id="links">
+  <h2 class="glow-white">Find Me</h2>
+  <div class="cards">
+    <a class="card tt" href="https://www.tiktok.com/@erzyvfx" target="_blank" rel="noopener">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <path class="c1" d="M32 6c.6 4.4 3.2 7.2 8 7.6v5.6c-3 0-5.600-.9-8-2.500v12.300c0 6.600-5.100 11-11 11s-10.300-4.600-10.300-10.300S14.700 18 21 18.400v5.800c-3.200-.6-5 1.700-5 4.200 0 2.300 1.800 4.200 4.200 4.200 2.700 0 4.300-1.800 4.300-4.600V6z" transform="translate(-1.500 -1)"/>
+        <path class="c2" d="M32 6c.6 4.4 3.200 7.200 8 7.600v5.600c-3 0-5.600-.9-8-2.500v12.300c0 6.600-5.100 11-11 11s-10.300-4.600-10.300-10.300S14.700 18 21 18.400v5.800c-3.200-.6-5 1.700-5 4.200 0 2.300 1.800 4.200 4.200 4.200 2.700 0 4.300-1.800 4.300-4.600V6z" transform="translate(1.500 1)"/>
+        <path class="c3" d="M32 6c.6 4.400 3.200 7.200 8 7.600v5.600c-3 0-5.600-.9-8-2.500v12.300c0 6.600-5.100 11-11 11s-10.300-4.600-10.300-10.300S14.700 18 21 18.400v5.800c-3.200-.6-5 1.700-5 4.200 0 2.300 1.800 4.200 4.200 4.200 2.700 0 4.300-1.800 4.300-4.600V6z"/>
+      </svg>
+      <h3>TikTok</h3>
+      <span>@erzyvfx</span>
+    </a>
+    <a class="card yt" href="https://www.youtube.com/@erzydagoat" target="_blank" rel="noopener">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="3" y="9" width="42" height="30" rx="9" fill="#ff0000"/>
+        <path class="play" d="M20 17l11 7-11 7z" fill="#fff"/>
+      </svg>
+      <h3>YouTube</h3>
+      <span>@erzydagoat</span>
+    </a>
+  </div>
+</section>
+
+<section id="introduce">
+  <h2 class="glow-white">What I’ll Introduce</h2>
+  <div class="intro">
+    <div class="reveal">
+      <div class="big green">MANGA</div>
+      <p>A new story with a bit of Black Clover energy, made from scratch.</p>
+    </div>
+    <div class="reveal">
+      <div class="big edits">EDITS</div>
+      <p>High quality edits with smooth motion and clean effects.</p>
+    </div>
+    <div class="reveal">
+      <div class="big red">TUTORIALS</div>
+      <p>Everything I learned while practicing, shared so you can learn it too.</p>
+    </div>
+  </div>
+</section>
+
+<section id="progress">
+  <h2 class="glow-white">My Progress</h2>
+  <div class="graphs">
+    <div class="gcard reveal">
+      <h3>Skill levels</h3>
+      <div class="bar" style="--v:85%;--c:#7aa7ff"><div><span>Editing</span><span>85%</span></div><u><i></i></u></div>
+      <div class="bar" style="--v:60%;--c:#39ff6a"><div><span>Manga art</span><span>60%</span></div><u><i></i></u></div>
+      <div class="bar" style="--v:70%;--c:#ffffff"><div><span>Storytelling</span><span>70%</span></div><u><i></i></u></div>
+      <div class="bar" style="--v:50%;--c:#ff2b3a"><div><span>Tutorials</span><span>50%</span></div><u><i></i></u></div>
+    </div>
+    <div class="gcard reveal">
+      <h3>Editing growth</h3>
+      <svg viewBox="0 0 300 170" role="img" aria-label="Line graph of editing skill rising over time">
+        <line class="gl" x1="20" y1="20" x2="290" y2="20"/><line class="gl" x1="20" y1="70" x2="290" y2="70"/><line class="gl" x1="20" y1="120" x2="290" y2="120"/>
+        <path class="area" d="M20 128 L85 110 L150 86 L215 56 L280 38 L280 140 L20 140 Z"/>
+        <path class="line" d="M20 128 L85 110 L150 86 L215 56 L280 38"/>
+        <circle class="dot" cx="20" cy="128" r="4"/><circle class="dot" cx="85" cy="110" r="4"/><circle class="dot" cx="150" cy="86" r="4"/><circle class="dot" cx="215" cy="56" r="4"/><circle class="dot" cx="280" cy="38" r="4"/>
+        <text class="lbl" x="20" y="162" text-anchor="middle">Start</text><text class="lbl" x="85" y="162" text-anchor="middle">3 mo</text><text class="lbl" x="150" y="162" text-anchor="middle">6 mo</text><text class="lbl" x="215" y="162" text-anchor="middle">9 mo</text><text class="lbl" x="280" y="162" text-anchor="middle">Now</text>
+      </svg>
+    </div>
+    <div class="gcard reveal">
+      <h3>Content mix</h3>
+      <svg viewBox="0 0 120 120" role="img" aria-label="Donut chart: edits 50 percent, manga 30 percent, tutorials 20 percent" style="max-width:220px;margin:auto">
+        <g transform="rotate(-90 60 60)">
+          <circle class="seg" cx="60" cy="60" r="40" stroke="#fff" style="stroke-dasharray:0 251.3" data-d="125.7 251.3"/>
+          <circle class="seg" cx="60" cy="60" r="40" stroke="#39ff6a" style="stroke-dasharray:0 251.3;stroke-dashoffset:-125.7" data-d="75.4 251.3"/>
+          <circle class="seg" cx="60" cy="60" r="40" stroke="#ff2b3a" style="stroke-dasharray:0 251.3;stroke-dashoffset:-201.1" data-d="50.3 251.3"/>
+        </g>
+      </svg>
+      <div class="legend"><span style="--c:#fff"><b></b>Edits 50%</span><span style="--c:#39ff6a"><b></b>Manga 30%</span><span style="--c:#ff2b3a"><b></b>Tutorials 20%</span></div>
+    </div>
+  </div>
+  <p class="note">Numbers are placeholders. Change them in the code to match your real progress.</p>
+</section>
+
+<section class="motto">
+  <h2 class="glow-white">
+    <span class="slide" style="animation-delay:.1s"><span class="never">NEVER GIVE UP,</span></span><br>
+    <span class="slide" style="animation-delay:.7s">instead learn</span><br>
+    <span class="slide" style="animation-delay:1.3s"><span class="step">STEP BY STEP</span></span>
+  </h2>
+</section>
+
+<footer>© 2024 Erzy’s Project</footer>
+
+<script>
+/* Ash particles drifting off the 2024 text */
+(function(){
+  var c=document.getElementById('ash'),x=c.getContext('2d'),p=[],W,H;
+  function size(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight}
+  size();addEventListener('resize',size);
+  function spawn(){
+    p.push({x:W*.2+Math.random()*W*.6,y:H*.55+Math.random()*H*.25,
+      r:Math.random()*2.2+.6,vx:Math.random()*1.2-.2,vy:-(Math.random()*.7+.2),
+      a:Math.random()*.6+.3,g:Math.floor(Math.random()*90+110)});
+  }
+  (function loop(){
+    x.clearRect(0,0,W,H);
+    if(p.length<110)spawn();
+    for(var i=p.length-1;i>=0;i--){
+      var q=p[i];q.x+=q.vx;q.y+=q.vy;q.a-=.004;
+      if(q.a<=0){p.splice(i,1);continue}
+      x.fillStyle='rgba('+q.g+','+q.g+','+q.g+','+q.a+')';
+      x.beginPath();x.arc(q.x,q.y,q.r,0,6.283);x.fill();
+    }
+    requestAnimationFrame(loop);
+  })();
+})();
+
+/* Reveal on scroll */
+var io=new IntersectionObserver(function(e){e.forEach(function(i){if(i.isIntersecting){i.target.classList.add('show');io.unobserve(i.target)}})},{threshold:.2});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+/* Donut animation when its card appears */
+document.querySelectorAll('.gcard').forEach(function(g){
+  new MutationObserver(function(){
+    if(g.classList.contains('show')) g.querySelectorAll('.seg').forEach(function(c){c.style.strokeDasharray=c.dataset.d});
+  }).observe(g,{attributes:true,attributeFilter:['class']});
+});
+
+/* Settings: background theme + calm mode, remembered between visits */
+(function(){
+  var bg=document.getElementById('bg'),panel=document.getElementById('panel'),gear=document.getElementById('gear'),
+      calm=document.getElementById('calm'),btns=document.querySelectorAll('.themes button');
+  function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function load(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function setTheme(t){bg.dataset.theme=t;btns.forEach(function(b){b.classList.toggle('on',b.dataset.t===t)});save('erzy-theme',t)}
+  function setCalm(on){document.body.classList.toggle('calm',on);calm.checked=on;save('erzy-calm',on?'1':'0')}
+  btns.forEach(function(b){b.addEventListener('click',function(){setTheme(b.dataset.t)})});
+  calm.addEventListener('change',function(){setCalm(calm.checked)});
+  gear.addEventListener('click',function(){var o=panel.classList.toggle('open');gear.setAttribute('aria-expanded',o)});
+  setTheme(load('erzy-theme')||'void');
+  setCalm(load('erzy-calm')==='1');
+})();
+</script>
+</body>
+</html>
